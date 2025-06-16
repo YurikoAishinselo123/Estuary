@@ -1,0 +1,28 @@
+{
+  "chapterId": 1,
+  "chapterTitle": "Chapter 1",
+  "chapterDescription": "Titik Awal Penyelamatan",
+  "missions": [
+    {
+      "id": 1,
+      "title": "Ambil Alat",
+      "description": "Ambil kamera dan penyedot sampah",
+      "qty": 2,
+      "condition": ""
+    },
+    {
+      "id": 2,
+      "title": "Bersihkan Sampah",
+      "description": "Bersihkan 5 sampah dengan alat penyedot.",
+      "qty": 20,
+      "condition": "1"
+    },
+    {
+      "id": 3,
+      "title": "Ambil Foto",
+      "description": "Gunakan kamera untuk mengambil foto.",
+      "qty": 1,
+      "condition": "2"
+    }
+  ]
+}
