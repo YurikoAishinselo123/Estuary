@@ -23,7 +23,7 @@ public class MissionManager : MonoBehaviour
 
     private void Start()
     {
-        int currentChapterIndex = SaveSystem.GetCurrentChapter();
+        int currentChapterIndex = ChapterSaveHelper.GetCurrentChapter();
         LoadChapter($"Chapter{currentChapterIndex}");
     }
 
@@ -33,19 +33,26 @@ public class MissionManager : MonoBehaviour
 
         if (CurrentChapter != null)
         {
-            Debug.Log($"Loaded: {CurrentChapter.chapterTitle}");
+            Debug.Log($"[MissionManager] Loaded: {CurrentChapter.chapterTitle}");
             OnChapterLoaded?.Invoke(CurrentChapter);
         }
         else
         {
-            Debug.LogError($"Failed to load chapter: {fileName}");
+            Debug.LogError($"[MissionManager] Failed to load chapter: {fileName}");
         }
     }
 
     public void CompleteCurrentChapterAndAdvance()
     {
-        int currentChapter = SaveSystem.GetCurrentChapter();
-        SaveSystem.SetCurrentChapter(currentChapter + 1);
-        LoadChapter($"Chapter{currentChapter + 1}");
+        int currentChapter = ChapterSaveHelper.GetCurrentChapter();
+        int nextChapter = currentChapter + 1;
+
+        ChapterSaveHelper.SetCurrentChapter(nextChapter);
+        LoadChapter($"Chapter{nextChapter}");
+    }
+
+    public int GetCurrentChapterNumber()
+    {
+        return CurrentChapter != null ? CurrentChapter.chapterId : 1;
     }
 }

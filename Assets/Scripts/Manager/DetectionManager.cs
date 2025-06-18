@@ -17,6 +17,7 @@ public class DetectionManager : MonoBehaviour
     [SerializeField] private Transform playerCamera;
 
     private float timer;
+    private CollectibleItem currentItem;
 
     private void Awake()
     {
@@ -26,7 +27,8 @@ public class DetectionManager : MonoBehaviour
 
     private void Start()
     {
-        playerCamera = Camera.main.transform;
+        if (playerCamera == null)
+            playerCamera = Camera.main.transform;
     }
 
     private void Update()
@@ -37,12 +39,12 @@ public class DetectionManager : MonoBehaviour
             timer = 0f;
             PerformDetection();
         }
-        // Debug.Log("tes");
-
     }
 
     private void PerformDetection()
     {
+        currentItem = null;
+
         Collider[] hits = Physics.OverlapSphere(playerCamera.position, detectionRange, detectionLayer);
 
         foreach (Collider hit in hits)
@@ -56,6 +58,7 @@ public class DetectionManager : MonoBehaviour
                 if (detectable != null)
                 {
                     string detectedName = detectable.GetDisplayName();
+                    currentItem = hit.GetComponent<CollectibleItem>();
                     Debug.Log($"[DetectionManager] Detected: {detectedName}");
                     OnDetect?.Invoke(detectedName);
                     return;
@@ -63,11 +66,14 @@ public class DetectionManager : MonoBehaviour
             }
         }
 
-        // If nothing detected
-        Debug.Log("[DetectionManager] Nothing detected");
+        // Nothing detected
         OnDetect?.Invoke(string.Empty);
     }
 
+    public CollectibleItem GetCurrentDetectedItem()
+    {
+        return currentItem;
+    }
 
     private void OnDrawGizmosSelected()
     {
