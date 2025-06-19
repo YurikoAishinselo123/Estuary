@@ -7,10 +7,10 @@ public class MissionItemUI : MonoBehaviour
     [SerializeField] private TMP_Text descriptionText;
     [SerializeField] private TMP_Text progressText;
 
-    private Mission mission;
+    private MissionModel mission;
     public int MissionId => mission.id;
 
-    public void SetMission(Mission mission)
+    public void SetMission(MissionModel mission)
     {
         this.mission = mission;
         titleText.text = mission.title;

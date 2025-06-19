@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public class Mission
+public class MissionModel
 {
     public int id;
     public string title;
