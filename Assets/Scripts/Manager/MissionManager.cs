@@ -5,9 +5,9 @@ public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance { get; private set; }
 
-    public event Action<Chapter> OnChapterLoaded;
+    public event Action<ChapterModel> OnChapterLoaded;
 
-    public Chapter CurrentChapter { get; private set; }
+    public ChapterModel CurrentChapter { get; private set; }
 
     private void Awake()
     {

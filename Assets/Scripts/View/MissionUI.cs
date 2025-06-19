@@ -20,7 +20,7 @@ public class MissionUI : MonoBehaviour
             MissionManager.Instance.OnChapterLoaded -= PopulateMissions;
     }
 
-    private void PopulateMissions(Chapter chapter)
+    private void PopulateMissions(ChapterModel chapter)
     {
         foreach (Transform child in missionListContainer)
             Destroy(child.gameObject);

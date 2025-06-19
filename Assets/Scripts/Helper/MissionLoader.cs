@@ -3,7 +3,7 @@ using UnityEngine;
 
 public static class MissionLoader
 {
-    public static Chapter LoadChapter(string fileName)
+    public static ChapterModel LoadChapter(string fileName)
     {
         string filePath = Path.Combine(Application.streamingAssetsPath, "Mission", $"{fileName}.json");
         if (!File.Exists(filePath))
@@ -13,6 +13,6 @@ public static class MissionLoader
         }
 
         string json = File.ReadAllText(filePath);
-        return JsonUtility.FromJson<Chapter>(json);
+        return JsonUtility.FromJson<ChapterModel>(json);
     }
 }
