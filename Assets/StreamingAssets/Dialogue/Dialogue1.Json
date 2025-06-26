@@ -1,0 +1,34 @@
+{
+  "conversationId": "dialog_1",
+  "npcName": "Dayat",
+  "dialogues": [
+    {
+      "speaker": "Dayat",
+      "text": "Asep, saya punya misi penting untuk kamu."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Saya sudah berbicara dengan penduduk setempat, dan mereka bilang kondisi laut di sekitar sini makin parah."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Saya mau kamu turun langsung ke lokasi dan bersihkan semua sampah yang kamu temukan di laut."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Kamu dokumentasikan setelah semua sampah dibersihkan."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Peralatan sudah saya siapkan di Office 2 — alat penyedot sampah dan kamera."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Kerjakan misi ini dengan baik, Asep. Ini langkah awal kita untuk menyelamatkan laut Uraina."
+    },
+    {
+      "speaker": "Asep",
+      "text": "Siap, Pak Dayat! Saya akan kerjakan sebaik mungkin."
+    }
+  ]
+}

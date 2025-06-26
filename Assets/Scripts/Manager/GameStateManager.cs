@@ -1,19 +1,6 @@
 using UnityEngine;
 using System;
 
-public enum GameState
-{
-    Gameplay,
-    Gameover,
-    ChapterCompleted,
-    Loading,
-    Settings,
-    Mainmenu,
-    Cutscene,
-    Dialogue,
-    Paused
-}
-
 public class GameStateManager : MonoBehaviour
 {
     public static GameStateManager Instance { get; private set; }
@@ -36,6 +23,38 @@ public class GameStateManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Start()
+    {
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.OnDialogueStarted += HandleDialogueStarted;
+            DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnded;
+        }
+        else
+        {
+            Debug.LogWarning("DialogueManager.Instance not found in GameStateManager Start()");
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.OnDialogueStarted -= HandleDialogueStarted;
+            DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnded;
+        }
+    }
+
+    private void HandleDialogueStarted(NPCDialogueModel model, NPCController speaker)
+    {
+        SetState(GameState.Dialogue);
+    }
+
+    private void HandleDialogueEnded()
+    {
+        ResumeGameplay();
+    }
+
     public void SetState(GameState newState)
     {
         if (CurrentState == newState)
@@ -43,6 +62,7 @@ public class GameStateManager : MonoBehaviour
 
         CurrentState = newState;
         OnStateChanged?.Invoke(CurrentState);
+        Debug.Log($"GameState changed to: {CurrentState}");
     }
 
     public void ResumeGameplay()
