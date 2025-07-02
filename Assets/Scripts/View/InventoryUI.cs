@@ -64,7 +64,7 @@ public class InventoryUI : MonoBehaviour
                 }
                 else
                 {
-                    slotUI.Clear(); // You should implement this method in ItemSlotUI
+                    slotUI.Clear(); 
                 }
 
                 slotUI.SetHighlight(i == selectedIndex);

@@ -47,13 +47,9 @@ public class ToolManager : MonoBehaviour
             {
                 case ItemType.Camera:
                     currentTool = cameraTool;
-            Debug.Log("Camera Tool : ");
-
                     break;
                 case ItemType.Vacuum:
                     currentTool = vacuumTool;
-            Debug.Log("vacuum Tool : " + currentTool);
-
                     break;
                 default:
                     Debug.LogWarning($"[ToolManager] Tool not handled: {item.itemSO.itemType}");

@@ -17,6 +17,7 @@ public class SaveSystem : MonoBehaviour
         {
             var items = InventoryManager.Instance.GetItems();
             InventorySaveHelper.Save(items);
+            Debug.Log("Saved items : " + items);
         }
 
         if (MissionManager.Instance != null)
@@ -45,6 +46,7 @@ public class SaveSystem : MonoBehaviour
     {
         InventorySaveHelper.ResetInventory();
         ChapterSaveHelper.ResetChapterProgress();
+        PhotoSaveHelper.DeleteAllPhotos();
         PlayerPrefs.Save();
         Debug.Log("[SaveSystem] All data reset.");
     }
