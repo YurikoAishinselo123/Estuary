@@ -9,7 +9,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float mouseSensitivity = 2f;
-    [SerializeField] private float pitchClamp = 80f;
+
+    [Header("Look Settings")]
+    private float minPitch = -25f;
+    private float maxPitch = 45f; 
 
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
@@ -17,7 +20,9 @@ public class PlayerController : MonoBehaviour
     private CharacterController characterController;
     private Vector3 moveDirection;
     private Vector3 velocity;
+
     private float verticalLookRotation = 0f;
+    private float yawRotation = 0f;
 
     private void Awake()
     {
@@ -26,6 +31,7 @@ public class PlayerController : MonoBehaviour
         if (cameraTransform == null)
             cameraTransform = Camera.main.transform;
 
+        // Optional:
         // Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
     }
@@ -46,11 +52,14 @@ public class PlayerController : MonoBehaviour
     {
         Vector2 lookInput = InputManager.Instance.LookInput * mouseSensitivity;
 
+        // Vertical rotation (pitch)
         verticalLookRotation -= lookInput.y;
-        verticalLookRotation = Mathf.Clamp(verticalLookRotation, -pitchClamp, pitchClamp);
+        verticalLookRotation = Mathf.Clamp(verticalLookRotation, minPitch, maxPitch);
         cameraTransform.localRotation = Quaternion.Euler(verticalLookRotation, 0f, 0f);
 
-        transform.Rotate(Vector3.up * lookInput.x);
+        // Horizontal rotation (yaw)
+        yawRotation += lookInput.x;
+        transform.rotation = Quaternion.Euler(0f, yawRotation, 0f);
     }
 
     private void HandleMovement()
