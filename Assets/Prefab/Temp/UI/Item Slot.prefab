@@ -321,6 +321,8 @@ MonoBehaviour:
   itemIcon: {fileID: 5427351122815061232}
   itemNameText: {fileID: 1162710848017952341}
   backgroundImage: {fileID: 2034290068694745380}
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  highlightColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &1720604896002815394
 MonoBehaviour:
   m_ObjectHideFlags: 0
