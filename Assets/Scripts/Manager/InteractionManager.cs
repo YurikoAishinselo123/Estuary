@@ -23,7 +23,6 @@ public class InteractionManager : MonoBehaviour
             ToolManager.Instance.UseTool();
         }
 
-        // 📦 Handle number key selection
         int keyIndex = InputManager.Instance.GetSelectedItemByKey();
         if (keyIndex != -1)
         {

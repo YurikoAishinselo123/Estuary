@@ -11,7 +11,7 @@ public class InventoryUI : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log($"[InventoryUI] OnEnable called on {gameObject.name}");
+        // Debug.Log($"[InventoryUI] OnEnable called on {gameObject.name}");
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
