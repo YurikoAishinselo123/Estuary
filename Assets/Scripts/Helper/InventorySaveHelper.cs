@@ -1,39 +1,53 @@
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public static class InventorySaveHelper
 {
-    private const string InventoryKey = "InventoryItems";
+    private static string savePath => Path.Combine(Application.persistentDataPath, "inventory.json");
 
-    public static void Save(List<InventoryItemModel> items)
+    [System.Serializable]
+    private class InventorySaveWrapper
     {
-        string json = JsonUtility.ToJson(new InventorySaveData(items));
-        PlayerPrefs.SetString(InventoryKey, json);
-        PlayerPrefs.Save();
+        public List<InventoryItemSaveDataModel> items;
     }
 
-    public static List<InventoryItemModel> Load()
+    public static void Save(List<InventoryItemModel> inventoryItems)
     {
-        if (!PlayerPrefs.HasKey(InventoryKey)) return new List<InventoryItemModel>();
+        var saveDataList = new List<InventoryItemSaveDataModel>();
 
-        string json = PlayerPrefs.GetString(InventoryKey);
-        InventorySaveData data = JsonUtility.FromJson<InventorySaveData>(json);
-        return data?.items ?? new List<InventoryItemModel>();
+        foreach (var model in inventoryItems)
+        {
+            saveDataList.Add(new InventoryItemSaveDataModel
+            {
+                itemID = model.itemSO.itemID,
+                quantity = model.quantity
+            });
+        }
+
+        InventorySaveWrapper wrapper = new InventorySaveWrapper { items = saveDataList };
+        string json = JsonUtility.ToJson(wrapper, true);
+        File.WriteAllText(savePath, json);
+    }
+
+    public static List<InventoryItemSaveDataModel> Load()
+    {
+        if (!File.Exists(savePath))
+        {
+            Debug.Log("[InventorySaveHelper] No inventory save file found.");
+            return new List<InventoryItemSaveDataModel>();
+        }
+
+        string json = File.ReadAllText(savePath);
+        InventorySaveWrapper wrapper = JsonUtility.FromJson<InventorySaveWrapper>(json);
+        return wrapper.items ?? new List<InventoryItemSaveDataModel>();
     }
 
     public static void ResetInventory()
     {
-        PlayerPrefs.DeleteKey(InventoryKey);
-    }
-
-    [System.Serializable]
-    private class InventorySaveData
-    {
-        public List<InventoryItemModel> items;
-
-        public InventorySaveData(List<InventoryItemModel> items)
+        if (File.Exists(savePath))
         {
-            this.items = items;
+            File.Delete(savePath);
         }
     }
 }

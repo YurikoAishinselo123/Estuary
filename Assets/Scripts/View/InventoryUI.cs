@@ -1,17 +1,30 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class InventoryUI : MonoBehaviour
 {
-    [Header("UI References")]
-    [SerializeField] private Transform itemSlotParent; // Parent layout container
-    [SerializeField] private GameObject itemSlotPrefab; // Prefab to spawn
+    [SerializeField] private GameObject slotPrefab;
+    [SerializeField] private Transform slotParent;
+    [SerializeField] private int maxSlotCount = 4;
+
+    private List<ItemSlotUI> slotUIs = new();
 
     private void OnEnable()
     {
+        Debug.Log($"[InventoryUI] OnEnable called on {gameObject.name}");
         if (InventoryManager.Instance != null)
         {
+            InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
             InventoryManager.Instance.OnInventoryUpdated += UpdateUI;
+
+            InventoryManager.Instance.OnItemSelected -= HighlightSelectedSlot;
+            InventoryManager.Instance.OnItemSelected += HighlightSelectedSlot;
+
+            // Initial display
+            // UpdateUI(InventoryManager.Instance.GetItems());
+
+            var items = InventoryManager.Instance.GetItems();
+            UpdateUI(items);
         }
     }
 
@@ -20,31 +33,50 @@ public class InventoryUI : MonoBehaviour
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
+            InventoryManager.Instance.OnItemSelected -= HighlightSelectedSlot;
         }
     }
 
-    public void UpdateUI()
+    private void UpdateUI(List<InventoryItemModel> items)
     {
-        if (itemSlotParent == null || itemSlotPrefab == null)
+        // Destroy old slot UI objects
+        foreach (var slot in slotUIs)
         {
-            Debug.LogError("[InventoryUI] Missing UI references.");
-            return;
+            if (slot != null)
+                Destroy(slot.gameObject);
         }
+        slotUIs.Clear();
 
-        // Clear existing slots
-        foreach (Transform child in itemSlotParent)
+        int selectedIndex = InventoryManager.Instance.GetSelectedIndex();
+
+        for (int i = 0; i < maxSlotCount; i++)
         {
-            Destroy(child.gameObject);
+            GameObject slotObj = Instantiate(slotPrefab, slotParent);
+            ItemSlotUI slotUI = slotObj.GetComponent<ItemSlotUI>();
+
+            if (slotUI != null)
+            {
+                slotUIs.Add(slotUI);
+
+                if (i < items.Count)
+                {
+                    slotUI.Setup(items[i].itemSO);
+                }
+                else
+                {
+                    slotUI.Clear(); // You should implement this method in ItemSlotUI
+                }
+
+                slotUI.SetHighlight(i == selectedIndex);
+            }
         }
+    }
 
-        // Spawn a slot for each collected item
-        List<InventoryItemModel> items = InventoryManager.Instance.GetItems();
-
-        foreach (var item in items)
+    private void HighlightSelectedSlot(int selectedIndex)
+    {
+        for (int i = 0; i < slotUIs.Count; i++)
         {
-            GameObject slotGO = Instantiate(itemSlotPrefab, itemSlotParent);
-            ItemSlotUI slotUI = slotGO.GetComponent<ItemSlotUI>();
-            slotUI.Setup(item.itemSO);
+            slotUIs[i].SetHighlight(i == selectedIndex);
         }
     }
 }

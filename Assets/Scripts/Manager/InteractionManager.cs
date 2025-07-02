@@ -23,10 +23,12 @@ public class InteractionManager : MonoBehaviour
             ToolManager.Instance.UseTool();
         }
 
-        int selectedIndex = InputManager.Instance.GetSelectedItemByKey();
-        if (selectedIndex != -1)
+        // 📦 Handle number key selection
+        int keyIndex = InputManager.Instance.GetSelectedItemByKey();
+        if (keyIndex != -1)
         {
-            TrySelectToolByIndex(selectedIndex - 1);
+            int inventoryIndex = keyIndex - 1;
+            InventoryManager.Instance.SelectItem(inventoryIndex);
         }
     }
 
@@ -42,25 +44,7 @@ public class InteractionManager : MonoBehaviour
         }
         else if (detected is NPC npc)
         {
-            npc.TriggerDialogue(); 
-        }
-        else
-        {
-            Debug.LogWarning("Detected object is not interactable.");
-        }
-    }
-
-    private void TrySelectToolByIndex(int index)
-    {
-        var items = InventoryManager.Instance.GetItems();
-        if (index >= 0 && index < items.Count)
-        {
-            var selectedItem = items[index];
-            ToolManager.Instance.SelectTool(selectedItem.itemSO.itemType);
-        }
-        else
-        {
-            Debug.Log($"No item at index {index} in inventory.");
+            npc.TriggerDialogue();
         }
     }
 }

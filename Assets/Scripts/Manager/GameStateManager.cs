@@ -25,6 +25,7 @@ public class GameStateManager : MonoBehaviour
 
     private void Start()
     {
+        SaveSystem.Instance?.LoadAll();
         if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.OnDialogueStarted += HandleDialogueStarted;

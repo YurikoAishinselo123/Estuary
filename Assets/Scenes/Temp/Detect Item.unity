@@ -247,7 +247,7 @@ GameObject:
   - component: {fileID: 521443312}
   - component: {fileID: 521443311}
   - component: {fileID: 521443310}
-  - component: {fileID: 521443309}
+  - component: {fileID: 521443314}
   m_Layer: 3
   m_Name: Door
   m_TagString: Untagged
@@ -255,19 +255,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &521443309
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521443308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55a7b875249d4419082e376e7c1324fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  doorName: Pintu Rumah
 --- !u!135 &521443310
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -357,6 +344,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &521443314
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521443308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f5310a6bc863486197a3ba9b1e9f3c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorName: 
 --- !u!1 &739129254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1066,71 +1066,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1795271600
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4036091844583577204, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: itemData
-      value: 
-      objectReference: {fileID: 11400000, guid: 197483d4c7e494519a8d4e752c100d5e, type: 2}
-    - target: {fileID: 5193800781140878050, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_Name
-      value: Vacuum
-      objectReference: {fileID: 0}
-    - target: {fileID: 5193800781140878050, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.42
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.46
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8839721289945274055, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 88e0aafbd1bac430e8e7cb0ebe33f486, type: 3}
 --- !u!1 &1900734268
 GameObject:
   m_ObjectHideFlags: 0
@@ -1386,10 +1321,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3173184202510480044}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7cfacddc9a116412396de6e4f09038cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 9707067913a034013a0a96e1a50f9bde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcName: Alex
+  npcName: Deni
+  jsonFileName: Dialogue1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1398,7 +1334,6 @@ SceneRoots:
   - {fileID: 1260340314}
   - {fileID: 739129260}
   - {fileID: 1720195065}
-  - {fileID: 1795271600}
   - {fileID: 2211693885936993929}
   - {fileID: 521443313}
   - {fileID: 358629851}
