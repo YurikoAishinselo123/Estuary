@@ -6,38 +6,113 @@ public class InventoryManager : MonoBehaviour
 {
     public static InventoryManager Instance { get; private set; }
 
-    public event Action OnInventoryUpdated;
+    public event Action<List<InventoryItemModel>> OnInventoryUpdated;
+    public event Action<int> OnItemSelected;
 
     private List<InventoryItemModel> inventoryItems = new();
+    private int selectedIndex = -1;
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject); // Optional
     }
 
     public void AddItem(ItemSO itemSO)
     {
-        var newItem = new InventoryItemModel(itemSO);
-        inventoryItems.Add(newItem);
-        OnInventoryUpdated?.Invoke();
+        if (itemSO == null)
+        {
+            Debug.LogWarning("[InventoryManager] Tried to add null ItemSO.");
+            return;
+        }
 
-        Debug.Log($"[InventoryManager] Added item: {itemSO.itemName}");
+        var existing = inventoryItems.Find(i => i.itemSO == itemSO);
+        if (existing != null)
+        {
+            existing.quantity++;
+        }
+        else
+        {
+            inventoryItems.Add(new InventoryItemModel(itemSO));
+        }
 
-        SaveSystem.Instance?.SaveAll(); // Optional: auto-save
+        Debug.Log($"[InventoryManager] Item added: {itemSO.itemName}");
+
+        OnInventoryUpdated?.Invoke(GetItems());
+        SaveSystem.Instance?.SaveAll();
     }
 
-    public void LoadItems(List<InventoryItemModel> loadedItems)
+    public void SelectItem(int index)
     {
-        inventoryItems = loadedItems ?? new List<InventoryItemModel>();
-        OnInventoryUpdated?.Invoke();
+        // 🔁 Toggle: selecting the same index = unselect
+        if (index == selectedIndex)
+        {
+            selectedIndex = -1;
+            OnItemSelected?.Invoke(selectedIndex);
+            return;
+        }
+
+        if (index < 0 || index >= inventoryItems.Count)
+        {
+            Debug.LogWarning($"[InventoryManager] Invalid selection index: {index}");
+
+            if (selectedIndex != -1)
+            {
+                selectedIndex = -1;
+                OnItemSelected?.Invoke(selectedIndex); 
+            }
+
+            return;
+        }
+
+        selectedIndex = index;
+        OnItemSelected?.Invoke(selectedIndex);
     }
 
-    public List<InventoryItemModel> GetItems() => inventoryItems;
+
+    public int GetSelectedIndex()
+    {
+        return selectedIndex;
+    }
+
+    public List<InventoryItemModel> GetItems()
+    {
+        return new List<InventoryItemModel>(inventoryItems);
+    }
+
+    public void LoadFromSave(List<InventoryItemSaveDataModel> savedData)
+    {
+        inventoryItems.Clear();
+
+        if (ItemDatabase.Instance == null)
+        {
+            Debug.LogError("[InventoryManager] ItemDatabase.Instance is null.");
+            return;
+        }
+
+        foreach (var data in savedData)
+        {
+            var itemSO = ItemDatabase.Instance.GetItemByID(data.itemID);
+            if (itemSO != null)
+            {
+                inventoryItems.Add(new InventoryItemModel(itemSO, data.quantity));
+            }
+        }
+
+        Debug.Log($"[InventoryManager] Loaded {inventoryItems.Count} items from save.");
+        OnInventoryUpdated?.Invoke(GetItems());
+    }
 
     public void ClearInventory()
     {
         inventoryItems.Clear();
-        OnInventoryUpdated?.Invoke();
+        Debug.Log("[InventoryManager] Inventory cleared.");
+        OnInventoryUpdated?.Invoke(GetItems());
     }
 }

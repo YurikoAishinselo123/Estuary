@@ -30,14 +30,16 @@ public class SaveSystem : MonoBehaviour
 
     public void LoadAll()
     {
-        var loadedItems = InventorySaveHelper.Load();
-        InventoryManager.Instance?.LoadItems(loadedItems);
+        var loadedSaveData = InventorySaveHelper.Load(); // returns List<InventoryItemSaveData>
+        Debug.Log("inventory data : " + loadedSaveData);
+        InventoryManager.Instance?.LoadFromSave(loadedSaveData); // converts to InventoryItemModel
 
         int chapter = ChapterSaveHelper.GetCurrentChapter();
         MissionManager.Instance?.CompleteCurrentChapterAndAdvance();
 
         Debug.Log("[SaveSystem] All data loaded.");
     }
+
 
     public void ResetAll()
     {

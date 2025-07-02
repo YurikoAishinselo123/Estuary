@@ -6,5 +6,5 @@ public class FishModel
 {
     public FishState currentState;
     public float idleTimer;
-    public Vector3 targetPosition; // This is now UnityEngine.Vector3
+    public Vector3 targetPosition; 
 }

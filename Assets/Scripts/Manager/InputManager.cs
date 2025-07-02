@@ -29,9 +29,18 @@ public class InputManager : MonoBehaviour
     public bool IsSprinting => playerInput.actions["Sprint"].IsPressed();
     public bool Interact => playerInput.actions["Interact"].WasPressedThisFrame();
     public bool Action => playerInput.actions["Action"].WasPressedThisFrame();
-    public bool GetCapturePhotoInput => playerInput.actions["CapturePhoto"].WasPressedThisFrame();
+    public bool LeftClick => playerInput.actions["CapturePhoto"].WasPressedThisFrame();
     public bool Mission => playerInput.actions["Mission"].WasPressedThisFrame();
     public bool Back => playerInput.actions["Back"].WasPressedThisFrame();
     public bool ShowCursor => playerInput.actions["ShowCursor"].IsPressed();
+
+    public int GetSelectedItemByKey()
+    {
+        if (Keyboard.current.digit1Key.wasPressedThisFrame) return 1;
+        if (Keyboard.current.digit2Key.wasPressedThisFrame) return 2;
+        if (Keyboard.current.digit3Key.wasPressedThisFrame) return 3;
+        if (Keyboard.current.digit4Key.wasPressedThisFrame) return 4;
+        return -1;
+    }
 
 }
