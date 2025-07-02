@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ToolManager : MonoBehaviour
 {
@@ -7,7 +8,7 @@ public class ToolManager : MonoBehaviour
     [SerializeField] private CameraTool cameraTool;
     [SerializeField] private VacuumTool vacuumTool;
 
-    private ItemType? currentTool;
+    private ITool currentTool;
 
     private void Awake()
     {
@@ -30,23 +31,39 @@ public class ToolManager : MonoBehaviour
     {
         var items = InventoryManager.Instance.GetItems();
 
+        currentTool?.Deactivate();
+        currentTool = null;
+
         if (index == -1)
         {
             Debug.Log("[ToolManager] Tool deselected.");
-            currentTool = null;
             return;
         }
 
         if (index >= 0 && index < items.Count)
         {
             var item = items[index];
-            currentTool = item.itemSO.itemType;
-            Debug.Log($"[ToolManager] Selected tool: {currentTool}");
+            switch (item.itemSO.itemType)
+            {
+                case ItemType.Camera:
+                    currentTool = cameraTool;
+                    break;
+                case ItemType.Vacuum:
+                    currentTool = vacuumTool;
+                    break;
+                default:
+                    Debug.LogWarning($"[ToolManager] Tool not handled: {item.itemSO.itemType}");
+                    break;
+            }
+
+            currentTool?.Activate();
+            Debug.Log("Current Tool : " + currentTool);
+
+            Debug.Log($"[ToolManager] Selected tool: {item.itemSO.itemType}");
         }
         else
         {
             Debug.LogWarning($"[ToolManager] Invalid item index: {index}");
-            currentTool = null;
         }
     }
 
@@ -58,17 +75,6 @@ public class ToolManager : MonoBehaviour
             return;
         }
 
-        switch (currentTool)
-        {
-            case ItemType.Camera:
-                cameraTool?.Capture();
-                break;
-            case ItemType.Vacuum:
-                vacuumTool?.Suck();
-                break;
-            default:
-                Debug.LogWarning($"[ToolManager] Tool not handled: {currentTool}");
-                break;
-        }
+        currentTool.Use();
     }
 }

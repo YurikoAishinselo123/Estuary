@@ -59,7 +59,7 @@ public class DetectionManager : MonoBehaviour
                 {
                     currentDetected = detectable;
                     string detectedName = detectable.GetDisplayName();
-                    // Debug.Log($"[DetectionManager] Detected: {detectedName}");
+                    Debug.Log($"[DetectionManager] Detected: {detectedName}");
                     OnDetect?.Invoke(detectedName);
                     return;
                 }

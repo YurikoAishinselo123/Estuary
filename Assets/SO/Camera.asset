@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f82a16ecc9a564b138f84e88dbe4842e, type: 3}
-  m_Name: Vacuum
+  m_Name: Camera
   m_EditorClassIdentifier: 
-  itemID: vacuum
-  itemType: 0
-  itemName: Vacuum
+  itemID: camera
+  itemType: 1
+  itemName: Camera
   itemIcon: {fileID: 21300000, guid: e768e181c00e34fdf8a3c1217303e5dc, type: 3}
-  itemPrefab3D: {fileID: 2286394915103310550, guid: 5c07eecb20bc3471eb163600ddad82db, type: 3}
+  itemPrefab3D: {fileID: 2466478230420923591, guid: 210b5f2e08faa492f9a9e4d7b60972e8, type: 3}
