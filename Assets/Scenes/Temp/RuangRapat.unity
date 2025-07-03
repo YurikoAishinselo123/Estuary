@@ -5431,6 +5431,59 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 43f3d53cdfa0a404b9079ba2a13fd04c, type: 3}
   m_PrefabInstance: {fileID: 1998100375}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2055917691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055917693}
+  - component: {fileID: 2055917692}
+  m_Layer: 0
+  m_Name: Tool Spawn Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2055917692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055917691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0276f6397fcb14a218211446d6d0e01c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toolsToSpawn:
+  - itemSO: {fileID: 11400000, guid: fdfe0c9d806174b6995b53e13098a723, type: 2}
+    toolPrefab: {fileID: 4035388876666768179, guid: 5d5b745969abd44c3a80436b630f3966, type: 3}
+    spawnPosition: {x: -4.754, y: -0.08899, z: 7.933}
+    spawnRotation: {x: -90, y: 0, z: -72.3}
+  - itemSO: {fileID: 11400000, guid: 197483d4c7e494519a8d4e752c100d5e, type: 2}
+    toolPrefab: {fileID: 2286394915103310550, guid: 5c07eecb20bc3471eb163600ddad82db, type: 3}
+    spawnPosition: {x: -4.988, y: -0.184, z: 6.5448}
+    spawnRotation: {x: -8.467, y: 63.763, z: -93.638}
+--- !u!4 &2055917693
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055917691}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 314.50003, y: 177, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2093153857
 GameObject:
   m_ObjectHideFlags: 0
@@ -6153,3 +6206,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 334885706}
+  - {fileID: 2055917693}
