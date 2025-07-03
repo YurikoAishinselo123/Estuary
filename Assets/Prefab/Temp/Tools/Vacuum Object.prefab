@@ -121,7 +121,8 @@ GameObject:
   - component: {fileID: 7330083491915219376}
   - component: {fileID: 4448894109081397325}
   - component: {fileID: 6849614186528862175}
-  m_Layer: 0
+  - component: {fileID: -3986822603036334761}
+  m_Layer: 3
   m_Name: Vacuum Object
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,7 +139,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.2621976, y: -0.06377231, z: 0.004963961, w: 0.962892}
   m_LocalPosition: {x: 0.94, y: 0.15999997, z: 0.71}
-  m_LocalScale: {x: 0.49999997, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2740741930578049226}
@@ -198,3 +199,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3986822603036334761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2286394915103310550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c7042b8266fc4bbba1197075122dbf0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData: {fileID: 11400000, guid: 197483d4c7e494519a8d4e752c100d5e, type: 2}
