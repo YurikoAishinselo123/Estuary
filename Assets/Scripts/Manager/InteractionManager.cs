@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -47,8 +48,9 @@ public class InteractionManager : MonoBehaviour
         }
         else if (detected is Door door)
         {
-            Debug.Log("load to the new scene : " + door.GetTargetScene());
+            SpawnManager.LastSceneEnteredFrom = SceneManager.GetActiveScene().name.ToEnum<SceneName>();
             LoadSceneManager.Instance.LoadScene(door.GetTargetScene());
+            
         }
     }
 }

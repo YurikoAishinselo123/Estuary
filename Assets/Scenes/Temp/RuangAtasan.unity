@@ -3678,9 +3678,9 @@ GameObject:
   - component: {fileID: 1711813855493899692}
   - component: {fileID: 3469287837073846631}
   - component: {fileID: 3469287837073846632}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Pintu_RuanganBoss
-  m_TagString: Office3ToOffice1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5213,10 +5213,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 919132149572035705}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cf9af994e4e0643afae7a2f51c55eb98, type: 3}
+  m_Script: {fileID: 11500000, guid: 8f5310a6bc863486197a3ba9b1e9f3c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 21300000, guid: c4cf4d8def52c43848d164a23f289f03, type: 3}
+  targetScene: 2
 --- !u!33 &3469287837264422782
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -8534,7 +8534,7 @@ GameObject:
   - component: {fileID: 1352014341}
   m_Layer: 3
   m_Name: Office 2 Door
-  m_TagString: Office2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10666,7 +10666,7 @@ GameObject:
   - component: {fileID: 1603933815}
   m_Layer: 3
   m_Name: Ocean Door
-  m_TagString: Office2
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13528,7 +13528,7 @@ GameObject:
   - component: {fileID: 3469287837477039685}
   m_Layer: 3
   m_Name: Pintu Ruangan Bos
-  m_TagString: Office3
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

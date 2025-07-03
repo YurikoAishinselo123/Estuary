@@ -27,6 +27,7 @@ public class LoadSceneManager : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad.ToString());
     }
 
+
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         if (nextScene.HasValue)
@@ -36,6 +37,8 @@ public class LoadSceneManager : MonoBehaviour
             {
                 CharacterController controller = player.GetComponent<CharacterController>();
                 Vector3 spawnPos = doorSO.GetSpawnPosition(nextScene.Value, SpawnManager.LastSceneEnteredFrom);
+                Debug.Log("From :" + SpawnManager.LastSceneEnteredFrom + "To : "+ nextScene.Value);
+
 
                 if (controller != null)
                 {
