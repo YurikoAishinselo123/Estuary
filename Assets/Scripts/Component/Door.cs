@@ -2,7 +2,11 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, IDetectable
 {
-    [SerializeField] private string doorName;
+    [SerializeField] private SceneName targetScene;
 
-    public string GetDisplayName() => doorName;
+    public string GetDisplayName()
+    {
+        return targetScene.GetDisplayName();
+    }
+    public SceneName GetTargetScene() => targetScene;
 }

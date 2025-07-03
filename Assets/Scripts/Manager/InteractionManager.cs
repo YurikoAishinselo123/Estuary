@@ -45,5 +45,10 @@ public class InteractionManager : MonoBehaviour
         {
             npc.TriggerDialogue();
         }
+        else if (detected is Door door)
+        {
+            Debug.Log("load to the new scene : " + door.GetTargetScene());
+            LoadSceneManager.Instance.LoadScene(door.GetTargetScene());
+        }
     }
 }
