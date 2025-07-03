@@ -8,10 +8,11 @@ public class DetectionManager : MonoBehaviour
     public event Action<string> OnDetect;
 
     [Header("Detection Settings")]
-    [SerializeField] private float detectionRange = 5f;
-    [SerializeField] private float detectionAngle = 45f;
-    [SerializeField] private float detectionFrequency = 0.1f;
+    private float detectionRange = 3f; 
+    private float detectionAngle = 45f;
+    private float detectionFrequency = 0.1f;
     [SerializeField] private LayerMask detectionLayer;
+    private int rayCount = 5;
 
     [Header("Camera Reference")]
     [SerializeField] private Transform playerCamera;
@@ -45,12 +46,13 @@ public class DetectionManager : MonoBehaviour
     {
         currentDetected = null;
 
+        // Step 1: OverlapSphere broad detection
         Collider[] hits = Physics.OverlapSphere(playerCamera.position, detectionRange, detectionLayer);
 
         foreach (Collider hit in hits)
         {
-            Vector3 directionToTarget = (hit.transform.position - playerCamera.position).normalized;
-            float angle = Vector3.Angle(playerCamera.forward, directionToTarget);
+            Vector3 dirToTarget = (hit.transform.position - playerCamera.position).normalized;
+            float angle = Vector3.Angle(playerCamera.forward, dirToTarget);
 
             if (angle < detectionAngle / 2f)
             {
@@ -58,12 +60,35 @@ public class DetectionManager : MonoBehaviour
                 if (detectable != null)
                 {
                     currentDetected = detectable;
-                    string detectedName = detectable.GetDisplayName();
-                    Debug.Log($"[DetectionManager] Detected: {detectedName}");
-                    OnDetect?.Invoke(detectedName);
+                    OnDetect?.Invoke(detectable.GetDisplayName());
                     return;
                 }
             }
+        }
+
+        // Step 2: Raycast fan sweep for better precision (especially up close)
+        float step = detectionAngle / (rayCount - 1);
+        float startAngle = -detectionAngle / 2f;
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            float angleOffset = startAngle + (step * i);
+            Quaternion rotation = Quaternion.Euler(0f, angleOffset, 0f);
+            Vector3 direction = rotation * playerCamera.forward;
+
+            if (Physics.Raycast(playerCamera.position, direction, out RaycastHit hit, detectionRange, detectionLayer))
+            {
+                IDetectable detectable = hit.collider.GetComponent<IDetectable>();
+                if (detectable != null)
+                {
+                    currentDetected = detectable;
+                    OnDetect?.Invoke(detectable.GetDisplayName());
+                    Debug.DrawRay(playerCamera.position, direction * detectionRange, Color.green, 0.1f);
+                    return;
+                }
+            }
+
+            Debug.DrawRay(playerCamera.position, direction * detectionRange, Color.red, 0.1f);
         }
 
         // Nothing detected

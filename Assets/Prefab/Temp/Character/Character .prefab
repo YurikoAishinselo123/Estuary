@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 9093025024117151846}
   - component: {fileID: 6977150628842151760}
   - component: {fileID: 3575475574978438378}
-  - component: {fileID: 255963223009017615}
   - component: {fileID: 3746576958137281221}
+  - component: {fileID: 5693620832397749879}
   m_Layer: 7
   m_Name: 'Character '
   m_TagString: Player
@@ -159,6 +159,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   walkSpeed: 3
   sprintSpeed: 6
+  diveSpeed: 4
+  diveSprintSpeed: 6
   jumpHeight: 1.5
   gravity: -9.81
   mouseSensitivity: 1
@@ -217,9 +219,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83f1cb3af641442d9a97608e74244c17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRange: 5
-  detectionAngle: 60
-  detectionFrequency: 0.1
   detectionLayer:
     serializedVersion: 2
     m_Bits: 8
@@ -236,18 +235,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e4d8ca667b184095a6af7a1a03de4e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &255963223009017615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2476586311622543277}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17eeba37ec72a4f1cb76981af5ad7b23, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3746576958137281221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,6 +247,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8af0ce26bb5439f983c350a1a70f0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5693620832397749879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2476586311622543277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc321a2009db448c888e613fc89d4cba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTool: {fileID: 6590586402138883521}
+  vacuumTool: {fileID: 3930561500305552834}
 --- !u!1 &4639286011221290312
 GameObject:
   m_ObjectHideFlags: 0
