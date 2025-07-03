@@ -11,7 +11,7 @@ public class InventoryUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // Debug.Log($"[InventoryUI] OnEnable called on {gameObject.name}");
+        Debug.Log($"[InventoryUI] OnEnable called on {gameObject.name}");
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
@@ -24,6 +24,7 @@ public class InventoryUI : MonoBehaviour
             // UpdateUI(InventoryManager.Instance.GetItems());
 
             var items = InventoryManager.Instance.GetItems();
+            Debug.Log("items : " + items);
             UpdateUI(items);
         }
     }
@@ -48,11 +49,12 @@ public class InventoryUI : MonoBehaviour
         slotUIs.Clear();
 
         int selectedIndex = InventoryManager.Instance.GetSelectedIndex();
-
+        Debug.Log("Update UI Inventory");
         for (int i = 0; i < maxSlotCount; i++)
         {
             GameObject slotObj = Instantiate(slotPrefab, slotParent);
             ItemSlotUI slotUI = slotObj.GetComponent<ItemSlotUI>();
+            Debug.Log("Looping slot UI");
 
             if (slotUI != null)
             {
@@ -61,10 +63,11 @@ public class InventoryUI : MonoBehaviour
                 if (i < items.Count)
                 {
                     slotUI.Setup(items[i].itemSO);
+                    Debug.Log($"[InventoryUI] Spawned item in slot {i}: {items[i].itemSO.itemName} (ID: {items[i].itemSO.itemID}, Quantity: {items[i].quantity})");
                 }
                 else
                 {
-                    slotUI.Clear(); 
+                    slotUI.Clear();
                 }
 
                 slotUI.SetHighlight(i == selectedIndex);

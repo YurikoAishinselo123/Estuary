@@ -16,4 +16,4 @@ MonoBehaviour:
   itemType: 1
   itemName: Camera
   itemIcon: {fileID: 21300000, guid: e768e181c00e34fdf8a3c1217303e5dc, type: 3}
-  itemPrefab3D: {fileID: 2466478230420923591, guid: 210b5f2e08faa492f9a9e4d7b60972e8, type: 3}
+  itemPrefab3D: {fileID: 4035388876666768179, guid: 5d5b745969abd44c3a80436b630f3966, type: 3}
