@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class InteractionManager : MonoBehaviour
 {
@@ -44,6 +45,12 @@ public class InteractionManager : MonoBehaviour
         else if (detected is NPC npc)
         {
             npc.TriggerDialogue();
+        }
+        else if (detected is Door door)
+        {
+            SpawnManager.LastSceneEnteredFrom = SceneManager.GetActiveScene().name.ToEnum<SceneName>();
+            LoadSceneManager.Instance.LoadScene(door.GetTargetScene());
+            
         }
     }
 }
