@@ -6,13 +6,15 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float walkSpeed = 3f;
     [SerializeField] private float sprintSpeed = 6f;
+    [SerializeField] private float diveSpeed = 4f;
+    [SerializeField] private float diveSprintSpeed = 6f;
     [SerializeField] private float jumpHeight = 1.5f;
     [SerializeField] private float gravity = -9.81f;
     [SerializeField] private float mouseSensitivity = 2f;
 
     [Header("Look Settings")]
     private float minPitch = -25f;
-    private float maxPitch = 45f; 
+    private float maxPitch = 45f;
 
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
@@ -23,6 +25,8 @@ public class PlayerController : MonoBehaviour
 
     private float verticalLookRotation = 0f;
     private float yawRotation = 0f;
+
+    private MovementMode currentMode = MovementMode.Walking;
 
     private void Awake()
     {
@@ -42,9 +46,21 @@ public class PlayerController : MonoBehaviour
             return;
 
         HandleLook();
-        HandleMovement();
-        HandleJump();
-        ApplyGravity();
+
+        switch (currentMode)
+        {
+            case MovementMode.Walking:
+                HandleMovement();
+                HandleJump();
+                ApplyGravity();
+                break;
+
+            case MovementMode.Diving:
+                HandleDivingMovement();
+                velocity = Vector3.zero; // disable gravity while diving
+                break;
+        }
+
         MoveCharacter();
     }
 
@@ -88,11 +104,37 @@ public class PlayerController : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
     }
 
+    private void HandleDivingMovement()
+    {
+        Vector2 moveInput = InputManager.Instance.MoveInput;
+        float horizontal = moveInput.x;
+        float vertical = moveInput.y;
+
+        // Move based on camera forward direction (includes vertical component)
+        Vector3 forward = cameraTransform.forward;
+        Vector3 right = cameraTransform.right;
+
+        Vector3 move = (forward * vertical + right * horizontal).normalized;
+
+        float speed = InputManager.Instance.IsSprinting ? diveSprintSpeed : diveSpeed;
+        moveDirection = move * speed;
+    }
+
     private void MoveCharacter()
     {
         Vector3 finalMove = moveDirection;
-        finalMove.y = velocity.y;
+        finalMove.y += velocity.y;
 
         characterController.Move(finalMove * Time.deltaTime);
+    }
+
+    public void SetMovementMode(MovementMode mode)
+    {
+        currentMode = mode;
+    }
+
+    public MovementMode GetMovementMode()
+    {
+        return currentMode;
     }
 }

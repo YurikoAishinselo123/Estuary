@@ -37,7 +37,7 @@ public class LoadSceneManager : MonoBehaviour
             {
                 CharacterController controller = player.GetComponent<CharacterController>();
                 Vector3 spawnPos = doorSO.GetSpawnPosition(nextScene.Value, SpawnManager.LastSceneEnteredFrom);
-                Debug.Log("From :" + SpawnManager.LastSceneEnteredFrom + "To : "+ nextScene.Value);
+                Debug.Log("From :" + SpawnManager.LastSceneEnteredFrom + "To : " + nextScene.Value);
 
 
                 if (controller != null)
@@ -49,6 +49,14 @@ public class LoadSceneManager : MonoBehaviour
                 else
                 {
                     Debug.Log("Cant find the controller");
+                }
+
+                if (player.TryGetComponent(out PlayerController playerController))
+                {
+                    if (nextScene.Value == SceneName.Laut)
+                        playerController.SetMovementMode(MovementMode.Diving);
+                    else
+                        playerController.SetMovementMode(MovementMode.Walking);
                 }
             }
 
