@@ -6,14 +6,10 @@ public class NPCController : MonoBehaviour, ITalkable
     [SerializeField] private bool facePlayerOnTalk = true;
     [SerializeField] private float rotationSpeed = 5f;
 
-    private Animator animator;
+    [SerializeField] private Animator animator;
     private Transform playerTransform;
     private bool isTalking = false;
 
-    private void Awake()
-    {
-        animator = GetComponent<Animator>();
-    }
 
     private void Start()
     {
@@ -26,23 +22,21 @@ public class NPCController : MonoBehaviour, ITalkable
         {
             Vector3 direction = (playerTransform.position - transform.position).normalized;
             direction.y = 0f;
-            if (direction != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            }
         }
     }
 
     public void OnDialogueStarted()
     {
         isTalking = true;
-        animator?.SetBool("IsTalking", true);
+        animator?.SetBool("Talk", true);
+        animator?.SetBool("Idle", false);
     }
 
     public void OnDialogueEnded()
     {
+        GameProgressManager.Instance.HasTalkedToDayat = true;
         isTalking = false;
-        animator?.SetBool("IsTalking", false);
+        animator?.SetBool("Talk", false);
+        animator?.SetBool("Idle", true);
     }
 }

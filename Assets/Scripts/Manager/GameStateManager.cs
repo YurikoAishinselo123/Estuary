@@ -6,10 +6,12 @@ public class GameStateManager : MonoBehaviour
     public static GameStateManager Instance { get; private set; }
 
     public GameState CurrentState { get; private set; } = GameState.Gameplay;
+    public MissionStage CurrentMissionStage { get; private set; } = MissionStage.FirstMeet;
 
     public bool IsGameplay => CurrentState == GameState.Gameplay;
 
     public event Action<GameState> OnStateChanged;
+    public event Action<MissionStage> OnMissionStageChanged;
 
     private void Awake()
     {
@@ -26,6 +28,7 @@ public class GameStateManager : MonoBehaviour
     private void Start()
     {
         SaveSystem.Instance?.LoadAll();
+
         if (DialogueManager.Instance != null)
         {
             DialogueManager.Instance.OnDialogueStarted += HandleDialogueStarted;
@@ -49,6 +52,7 @@ public class GameStateManager : MonoBehaviour
     private void HandleDialogueStarted(NPCDialogueModel model, NPCController speaker)
     {
         SetState(GameState.Dialogue);
+        Debug.Log("Current State");
     }
 
     private void HandleDialogueEnded()
@@ -63,11 +67,21 @@ public class GameStateManager : MonoBehaviour
 
         CurrentState = newState;
         OnStateChanged?.Invoke(CurrentState);
-        Debug.Log($"GameState changed to: {CurrentState}");
+        Debug.Log($"[GameStateManager] GameState changed to: {CurrentState}");
     }
 
     public void ResumeGameplay()
     {
         SetState(GameState.Gameplay);
+    }
+
+    public void SetMissionStage(MissionStage newStage)
+    {
+        if (newStage > CurrentMissionStage)
+        {
+            Debug.Log($"[GameStateManager] MissionStage changed: {CurrentMissionStage} -> {newStage}");
+            CurrentMissionStage = newStage;
+            OnMissionStageChanged?.Invoke(CurrentMissionStage);
+        }
     }
 }

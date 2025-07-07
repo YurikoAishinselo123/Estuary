@@ -45,6 +45,7 @@ public class InventoryManager : MonoBehaviour
         Debug.Log($"[InventoryManager] Item added: {itemSO.itemName}");
 
         OnInventoryUpdated?.Invoke(GetItems());
+        MissionManager.Instance?.NotifyItemCollected(itemSO);
         SaveSystem.Instance?.SaveAll();
     }
 

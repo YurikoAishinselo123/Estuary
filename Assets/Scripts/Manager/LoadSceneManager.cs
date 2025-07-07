@@ -60,6 +60,28 @@ public class LoadSceneManager : MonoBehaviour
                 }
             }
 
+            if (SpawnManager.LastSceneEnteredFrom == SceneName.RuangAtasan &&
+            nextScene.Value != SceneName.RuangAtasan &&
+            GameProgressManager.Instance.HasTalkedToDayat &&
+            !GameProgressManager.Instance.HasLeftRuangAtasanAfterTalking)
+            {
+                GameProgressManager.Instance.HasLeftRuangAtasanAfterTalking = true;
+                Debug.Log("Player telah keluar dari Ruang Atasan setelah berbicara dengan Dayat.");
+            }
+
+            if (nextScene.Value == SceneName.Laut)
+            {
+                GameProgressManager.Instance.HasVisitedOcean = true;
+                Debug.Log("[GameProgress] Player has entered Laut scene for the first time.");
+            }
+
+            Debug.Log($"[LoadSceneManager] Loading from {SpawnManager.LastSceneEnteredFrom} to {nextScene.Value}");
+            Debug.Log($"[GameProgress] TalkedToDayat: {GameProgressManager.Instance.HasTalkedToDayat}");
+            Debug.Log($"[GameProgress] HasLeftAfterTalking: {GameProgressManager.Instance.HasLeftRuangAtasanAfterTalking}");
+
+
+            SpawnManager.LastSceneEnteredFrom = nextScene.Value;
+
             nextScene = null;
         }
     }

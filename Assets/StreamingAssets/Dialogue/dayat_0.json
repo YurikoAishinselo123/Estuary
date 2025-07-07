@@ -1,0 +1,22 @@
+{
+  "conversationId": "dayat_intro",
+  "npcName": "Dayat",
+  "dialogues": [
+    {
+      "speaker": "Dayat",
+      "text": "Asep, saya punya misi penting untuk kamu."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Kondisi laut makin parah. Kamu harus turun langsung dan bersihkan sampah."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Alat penyedot dan kamera sudah saya siapkan di Ruang Office 2."
+    },
+    {
+      "speaker": "Asep",
+      "text": "Siap, Pak Dayat! Saya akan kerjakan sebaik mungkin."
+    }
+  ]
+}

@@ -6,7 +6,8 @@ public static class ChapterSaveHelper
 
     public static int GetCurrentChapter()
     {
-        return PlayerPrefs.GetInt(ChapterKey, 1); // Default to Chapter 1
+        // return PlayerPrefs.GetInt(ChapterKey, 1); // Default to Chapter 1
+        return 1;
     }
 
     public static void SetCurrentChapter(int chapter)
@@ -17,6 +18,7 @@ public static class ChapterSaveHelper
 
     public static void ResetChapterProgress()
     {
+        Debug.Log("reset");
         PlayerPrefs.DeleteKey(ChapterKey);
     }
 }
