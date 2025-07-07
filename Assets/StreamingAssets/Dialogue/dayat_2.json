@@ -1,0 +1,10 @@
+{
+  "conversationId": "dayat_tools_collected",
+  "npcName": "Dayat",
+  "dialogues": [
+    {
+      "speaker": "Dayat",
+      "text": "Alat sudah kamu ambil? Bagus. Sekarang waktunya ke laut."
+    }
+  ]
+}

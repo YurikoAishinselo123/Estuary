@@ -1,0 +1,10 @@
+{
+  "conversationId": "dayat_ocean_visited",
+  "npcName": "Dayat",
+  "dialogues": [
+    {
+      "speaker": "Dayat",
+      "text": "Kamu sudah lihat sendiri kondisinya kan? Sampah sangat parah!"
+    }
+  ]
+}
