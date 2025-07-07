@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Security.Cryptography.X509Certificates;
 
 public class PauseUI : MonoBehaviour
 {
@@ -32,25 +33,14 @@ public class PauseUI : MonoBehaviour
         quitButton.onClick.AddListener(QuitGame);
     }
 
-    void Update()
-    {
-        if (InputManager.Instance.Back)
-        {
-            if (isPaused)
-                ResumeGame();
-            else
-                PauseGame();
-        }
-    }
-
-    private void PauseGame()
+    public void PauseGame()
     {
         isPaused = true;
         PauseCanvas.SetActive(true);
         Time.timeScale = 0;
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
         isPaused = false;
         Time.timeScale = 1;

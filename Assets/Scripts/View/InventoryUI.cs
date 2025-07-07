@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,6 +25,9 @@ public class InventoryUI : MonoBehaviour
             DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnded;
         }
 
+        CameraTool.OnPhotoCaptureStarted += HandlePhotoCaptureStarted;
+        CameraTool.OnPhotoCaptured += HandlePhotoCaptured;
+
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
@@ -44,11 +48,30 @@ public class InventoryUI : MonoBehaviour
             DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnded;
         }
 
+        CameraTool.OnPhotoCaptureStarted -= HandlePhotoCaptureStarted;
+        CameraTool.OnPhotoCaptured -= HandlePhotoCaptured;
+
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
             InventoryManager.Instance.OnItemSelected -= HighlightSelectedSlot;
         }
+    }
+
+    private void HandlePhotoCaptureStarted()
+    {
+        slotParent.gameObject.SetActive(false);
+    }
+
+    private void HandlePhotoCaptured(Texture2D photo)
+    {
+        StartCoroutine(ReenableInventoryWithDelay(0.2f));
+    }
+
+    private IEnumerator ReenableInventoryWithDelay(float delay)
+    {
+        yield return new WaitForSecondsRealtime(delay);
+        slotParent.gameObject.SetActive(true);
     }
 
     private void UpdateUI(List<InventoryItemModel> items)
