@@ -1,49 +1,111 @@
 using UnityEngine;
-using System.Collections.Generic;
+using TMPro;
+using UnityEngine.UI;
+using System.Collections;
 
 public class MissionUI : MonoBehaviour
 {
-    [SerializeField] private GameObject missionItemPrefab;
-    [SerializeField] private Transform missionListContainer;
+    [Header("UI References")]
+    [SerializeField] private CanvasGroup missionContainer;
+    [SerializeField] private TMP_Text missionTitleText;
+    [SerializeField] private TMP_Text missionProgressText;
 
-    private List<MissionItemUI> activeItems = new();
+    private int currentMissionId = -1;
 
     private void OnEnable()
     {
         if (MissionManager.Instance != null)
-            MissionManager.Instance.OnChapterLoaded += PopulateMissions;
+        {
+            MissionManager.Instance.OnMissionUpdated += UpdateMissionUI;
+            MissionManager.Instance.OnMissionProgressUpdated += UpdateMissionProgress;
+
+            if (MissionManager.Instance.CurrentMission != null)
+                UpdateMissionUI(MissionManager.Instance.CurrentMission);
+        }
+
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.OnDialogueStarted += HandleDialogueStarted;
+            DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnded;
+        }
     }
 
     private void OnDisable()
     {
         if (MissionManager.Instance != null)
-            MissionManager.Instance.OnChapterLoaded -= PopulateMissions;
-    }
-
-    private void PopulateMissions(ChapterModel chapter)
-    {
-        foreach (Transform child in missionListContainer)
-            Destroy(child.gameObject);
-        activeItems.Clear();
-
-        foreach (var mission in chapter.missions)
         {
-            GameObject go = Instantiate(missionItemPrefab, missionListContainer);
-            MissionItemUI item = go.GetComponent<MissionItemUI>();
-            item.SetMission(mission);
-            activeItems.Add(item);
+            MissionManager.Instance.OnMissionUpdated -= UpdateMissionUI;
+            MissionManager.Instance.OnMissionProgressUpdated -= UpdateMissionProgress;
+        }
+
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.OnDialogueStarted -= HandleDialogueStarted;
+            DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnded;
         }
     }
 
-    public void UpdateMissionProgress(int missionId, int currentProgress)
+    private void HandleDialogueStarted(NPCDialogueModel model, NPCController speaker)
     {
-        foreach (var item in activeItems)
+        missionContainer.gameObject.SetActive(false);
+    }
+
+    private void HandleDialogueEnded()
+    {
+        missionContainer.gameObject.SetActive(true);
+    }
+
+
+
+    private void UpdateMissionUI(MissionModel mission)
+    {
+        if (mission == null)
         {
-            if (item.MissionId == missionId)
-            {
-                item.UpdateProgress(currentProgress);
-                break;
-            }
+            // Hide UI if no active mission
+            StartCoroutine(FadeOut());
+            return;
         }
+
+        if (mission.id != currentMissionId)
+        {
+            currentMissionId = mission.id;
+
+            // Update title and progress, then fade in
+            // Debug.Log("Current mission" + currentMissionId);
+            missionTitleText.text = mission.title;
+            missionProgressText.text = $"0/{mission.qty}";
+            StartCoroutine(FadeIn());
+        }
+    }
+
+    public void UpdateMissionProgress(int currentProgress)
+    {
+        missionProgressText.text = $"{currentProgress}/{MissionManager.Instance?.CurrentMission?.qty}";
+    }
+
+    private IEnumerator FadeIn()
+    {
+        missionContainer.alpha = 0;
+        missionContainer.gameObject.SetActive(true);
+
+        while (missionContainer.alpha < 1f)
+        {
+            missionContainer.alpha += Time.deltaTime * 2f;
+            yield return null;
+        }
+
+        missionContainer.alpha = 1f;
+    }
+
+    private IEnumerator FadeOut()
+    {
+        while (missionContainer.alpha > 0f)
+        {
+            missionContainer.alpha -= Time.deltaTime * 2f;
+            yield return null;
+        }
+
+        missionContainer.alpha = 0f;
+        missionContainer.gameObject.SetActive(false);
     }
 }

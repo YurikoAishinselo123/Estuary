@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     public event Action<NPCDialogueModel, NPCController> OnDialogueStarted;
     public event Action OnDialogueContinued;
     public event Action OnDialogueEnded;
+    
 
     private NPCDialogueModel dialogueModel;
     private NPCController currentSpeaker;
@@ -30,8 +31,9 @@ public class DialogueManager : MonoBehaviour
         currentIndex = 0;
         IsDialogueActive = true;
 
+
         OnDialogueStarted?.Invoke(model, speaker);
-        OnDialogueContinued?.Invoke(); // 👈 Immediately show first line
+        OnDialogueContinued?.Invoke(); 
     }
 
     public void ContinueDialogue()

@@ -9,9 +9,21 @@ public class InventoryUI : MonoBehaviour
 
     private List<ItemSlotUI> slotUIs = new();
 
+    void Awake()
+    {
+        slotPrefab.SetActive(true);
+    }
+
     private void OnEnable()
     {
         Debug.Log($"[InventoryUI] OnEnable called on {gameObject.name}");
+
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.OnDialogueStarted += HandleDialogueStarted;
+            DialogueManager.Instance.OnDialogueEnded += HandleDialogueEnded;
+        }
+
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
@@ -20,17 +32,18 @@ public class InventoryUI : MonoBehaviour
             InventoryManager.Instance.OnItemSelected -= HighlightSelectedSlot;
             InventoryManager.Instance.OnItemSelected += HighlightSelectedSlot;
 
-            // Initial display
-            // UpdateUI(InventoryManager.Instance.GetItems());
-
-            var items = InventoryManager.Instance.GetItems();
-            Debug.Log("items : " + items);
-            UpdateUI(items);
+            UpdateUI(InventoryManager.Instance.GetItems());
         }
     }
 
     private void OnDisable()
     {
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.OnDialogueStarted -= HandleDialogueStarted;
+            DialogueManager.Instance.OnDialogueEnded -= HandleDialogueEnded;
+        }
+
         if (InventoryManager.Instance != null)
         {
             InventoryManager.Instance.OnInventoryUpdated -= UpdateUI;
@@ -71,6 +84,16 @@ public class InventoryUI : MonoBehaviour
                 slotUI.SetHighlight(i == selectedIndex);
             }
         }
+    }
+
+    private void HandleDialogueStarted(NPCDialogueModel model, NPCController speaker)
+    {
+        slotParent.gameObject.SetActive(false);
+    }
+
+    private void HandleDialogueEnded()
+    {
+        slotParent.gameObject.SetActive(true);
     }
 
     private void HighlightSelectedSlot(int selectedIndex)
