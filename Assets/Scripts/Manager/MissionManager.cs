@@ -8,9 +8,13 @@ public class MissionManager : MonoBehaviour
     public static MissionManager Instance { get; private set; }
 
     public event Action<ChapterModel> OnChapterLoaded;
-    public ChapterModel CurrentChapter { get; private set; }
-    private MissionModel currentMission;
+    public event Action<MissionModel> OnMissionUpdated;
+    public event Action<int> OnMissionProgressUpdated;
 
+    public ChapterModel CurrentChapter { get; private set; }
+    public MissionModel CurrentMission => currentMission;
+
+    private MissionModel currentMission;
     private HashSet<string> collectedItemIDs = new();
 
     private void Awake()
@@ -58,10 +62,12 @@ public class MissionManager : MonoBehaviour
         if (currentMission != null)
         {
             Debug.Log($"[MissionManager] Current Mission: {currentMission.title}");
+            OnMissionUpdated?.Invoke(currentMission);
         }
         else
         {
             Debug.Log("[MissionManager] All missions in chapter completed.");
+            OnMissionUpdated?.Invoke(null); // Hide UI if needed
         }
     }
 
@@ -77,23 +83,33 @@ public class MissionManager : MonoBehaviour
 
         MissionSaveHelper.MarkMissionCompleted(currentMission.id);
 
-        // If all missions completed in this chapter, advance
         bool allMissionsDone = CurrentChapter.missions.All(m => MissionSaveHelper.IsMissionCompleted(m.id));
-
         GameProgressManager.Instance?.UpdateFromMissionProgress();
 
         if (allMissionsDone)
         {
             Debug.Log("[MissionManager] All missions complete. Advancing to next chapter...");
-            CompleteCurrentChapterAndAdvance();
+            // CompleteCurrentChapterAndAdvance();
         }
         else
         {
-            // ✅ Reload current chapter before reloading mission
-            // LoadChapter($"Chapter1");
+            LoadCurrentMission(); // Load next mission and notify UI
         }
     }
 
+    public void CompleteCurrentChapterAndAdvance()
+    {
+        int currentChapter = ChapterSaveHelper.GetCurrentChapter();
+        int nextChapter = currentChapter + 1;
+
+        ChapterSaveHelper.SetCurrentChapter(nextChapter);
+        // LoadChapter($"Chapter{nextChapter}");
+    }
+
+    public int GetCurrentChapterNumber()
+    {
+        return CurrentChapter != null ? CurrentChapter.chapterId : 1;
+    }
 
     public void NotifyItemCollected(ItemSO itemSO)
     {
@@ -104,9 +120,12 @@ public class MissionManager : MonoBehaviour
         {
             if (itemSO.itemID == "camera" || itemSO.itemID == "vacuum")
             {
-                if (collectedItemIDs.Add(itemSO.itemID)) // Only log new items
+                if (collectedItemIDs.Add(itemSO.itemID)) // Only new items
                 {
                     Debug.Log($"[MissionManager] Collected tool: {itemSO.itemID}");
+                    OnMissionProgressUpdated?.Invoke(collectedItemIDs.Count);
+                    // OnMissionUpdated?.Invoke(currentMission); // Optional: refresh UI
+
                 }
 
                 CheckMission1Completion();
@@ -125,17 +144,10 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    public void CompleteCurrentChapterAndAdvance()
+    // Optional: call this from gameplay systems (e.g. camera/photo/vacuum)
+    public void ReportMissionProgress(int currentAmount)
     {
-        int currentChapter = ChapterSaveHelper.GetCurrentChapter();
-        int nextChapter = currentChapter + 1;
-
-        ChapterSaveHelper.SetCurrentChapter(nextChapter);
-        // LoadChapter($"Chapter{nextChapter}");
-    }
-
-    public int GetCurrentChapterNumber()
-    {
-        return CurrentChapter != null ? CurrentChapter.chapterId : 1;
+        if (currentMission == null) return;
+        OnMissionUpdated?.Invoke(currentMission);
     }
 }

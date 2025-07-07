@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController))]
@@ -19,9 +20,17 @@ public class PlayerController : MonoBehaviour
     [Header("Camera")]
     [SerializeField] private Transform cameraTransform;
 
+    public event Action OnPlayerStartedMoving;
+    public event Action OnPlayerJumped;
+
+
     private CharacterController characterController;
     private Vector3 moveDirection;
     private Vector3 velocity;
+
+    private bool hasStartedMoving = false;
+    private bool hasJumped = false;
+
 
     private float verticalLookRotation = 0f;
     private float yawRotation = 0f;
@@ -83,7 +92,14 @@ public class PlayerController : MonoBehaviour
         Vector2 moveInput = InputManager.Instance.MoveInput;
         float speed = InputManager.Instance.IsSprinting ? sprintSpeed : walkSpeed;
 
-        moveDirection = (transform.right * moveInput.x + transform.forward * moveInput.y).normalized * speed;
+        Vector3 direction = (transform.right * moveInput.x + transform.forward * moveInput.y).normalized;
+        moveDirection = direction * speed;
+
+        if (!hasStartedMoving && direction.magnitude > 0.1f)
+        {
+            hasStartedMoving = true;
+            OnPlayerStartedMoving?.Invoke();
+        }
     }
 
     private void HandleJump()
@@ -91,13 +107,20 @@ public class PlayerController : MonoBehaviour
         if (!characterController.isGrounded)
             return;
 
-        velocity.y = -2f; // Keeps the player grounded
+        velocity.y = -2f; // Keeps grounded
 
         if (InputManager.Instance.SpaceKey)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+
+            if (!hasJumped)
+            {
+                hasJumped = true;
+                OnPlayerJumped?.Invoke();
+            }
         }
     }
+
 
     private void ApplyGravity()
     {
