@@ -21,6 +21,11 @@ public class VacuumController : MonoBehaviour
     /// 
     public void Suck()
     {
+        if (!LoadSceneManager.Instance.inOcean)
+        {
+            Debug.Log("[VacuumController] Vacuum can only be used in the ocean.");
+            return;
+        }
         ScanForGarbage();
         PullObjects();
     }
