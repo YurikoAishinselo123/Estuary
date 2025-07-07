@@ -49,12 +49,10 @@ public class InventoryUI : MonoBehaviour
         slotUIs.Clear();
 
         int selectedIndex = InventoryManager.Instance.GetSelectedIndex();
-        Debug.Log("Update UI Inventory");
         for (int i = 0; i < maxSlotCount; i++)
         {
             GameObject slotObj = Instantiate(slotPrefab, slotParent);
             ItemSlotUI slotUI = slotObj.GetComponent<ItemSlotUI>();
-            Debug.Log("Looping slot UI");
 
             if (slotUI != null)
             {
