@@ -5,6 +5,7 @@ public class LoadSceneManager : MonoBehaviour
 {
     public static LoadSceneManager Instance { get; private set; }
     public static SceneName? nextScene = null;
+    public bool inOcean = false;
 
     [SerializeField] private DoorSO doorSO;
 
@@ -72,7 +73,12 @@ public class LoadSceneManager : MonoBehaviour
             if (nextScene.Value == SceneName.Laut)
             {
                 GameProgressManager.Instance.HasVisitedOcean = true;
+                inOcean = true;
                 Debug.Log("[GameProgress] Player has entered Laut scene for the first time.");
+            }
+            else
+            {
+                inOcean = false;
             }
 
             Debug.Log($"[LoadSceneManager] Loading from {SpawnManager.LastSceneEnteredFrom} to {nextScene.Value}");
