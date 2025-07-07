@@ -4,11 +4,26 @@ using UnityEngine.SceneManagement;
 
 public class PauseUI : MonoBehaviour
 {
+    public static PauseUI Instance { get; private set; }
+
     public GameObject PauseCanvas;
     [SerializeField] private Button resumeButton;
     [SerializeField] private Button quitButton;
+
     public bool isPaused = false;
 
+    void Awake()
+    {
+        // Singleton + DontDestroyOnLoad
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {
@@ -22,13 +37,9 @@ public class PauseUI : MonoBehaviour
         if (InputManager.Instance.Back)
         {
             if (isPaused)
-            {
                 ResumeGame();
-            }
             else
-            {
                 PauseGame();
-            }
         }
     }
 
@@ -52,7 +63,6 @@ public class PauseUI : MonoBehaviour
         isPaused = false;
         PauseCanvas.SetActive(false);
         LoadSceneManager.Instance.LoadScene(SceneName.Mainmenu);
-        // AudioManager.Instance.PlayMainThemeBacksound();
-        // PlayerController.Instance.OfficeEnvirontment();
+        AudioManager.Instance.PlayMainThemeBacksound();
     }
 }

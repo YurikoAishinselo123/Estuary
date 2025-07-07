@@ -3,6 +3,7 @@ using System;
 
 public class GameStateManager : MonoBehaviour
 {
+    
     public static GameStateManager Instance { get; private set; }
 
     public GameState CurrentState { get; private set; } = GameState.Gameplay;
