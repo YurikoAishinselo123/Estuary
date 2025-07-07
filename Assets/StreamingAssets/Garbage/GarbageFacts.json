@@ -1,0 +1,22 @@
+[
+  {
+    "type": "KantongPlastik",
+    "fact": "Kantong plastik membutuhkan hingga 500 tahun untuk terurai di laut."
+  },
+  {
+    "type": "BotolKaca",
+    "fact": "Botol kaca bisa didaur ulang tanpa mengurangi kualitasnya."
+  },
+  {
+    "type": "BotolPlastik",
+    "fact": "Ada sekitar 1 juta botol plastik yang dibuang setiap menit di dunia."
+  },
+  {
+    "type": "Kaleng",
+    "fact": "Kaleng aluminium bisa didaur ulang dan kembali ke rak dalam waktu 60 hari."
+  },
+  {
+    "type": "KantongKertas",
+    "fact": "Kantong kertas lebih cepat terurai tetapi masih membutuhkan banyak energi untuk diproduksi."
+  }
+]

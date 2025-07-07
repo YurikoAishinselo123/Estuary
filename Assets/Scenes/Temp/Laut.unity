@@ -354,16 +354,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &20690920 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5850379632408866980, guid: 6e79b5f72e0d349c780a443680a6e696, type: 3}
@@ -513,6 +503,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
       insertIndex: -1
       addedObject: {fileID: 34516005}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 34516006}
   m_SourcePrefab: {fileID: 100100000, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
 --- !u!4 &34516003 stripped
 Transform:
@@ -546,6 +539,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8805259119731886292, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
+--- !u!114 &34516006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 34516004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 1
 --- !u!4 &56621988 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5185719845210603472, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -595,16 +601,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &94951232
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -732,16 +728,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1 &95290042
 GameObject:
   m_ObjectHideFlags: 0
@@ -981,6 +967,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 131135107}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 131135108}
   m_SourcePrefab: {fileID: 100100000, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
 --- !u!4 &131135105 stripped
 Transform:
@@ -1014,6 +1003,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5718334450758063988, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
+--- !u!114 &131135108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 131135106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 0
 --- !u!1001 &132848717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1153,16 +1155,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1 &177234239
 GameObject:
   m_ObjectHideFlags: 0
@@ -1423,16 +1415,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &215272722
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1891,16 +1873,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &460435400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2214,16 +2186,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 1
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &505382903
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2391,6 +2353,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 520658238}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 520658239}
   m_SourcePrefab: {fileID: 100100000, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
 --- !u!4 &520658236 stripped
 Transform:
@@ -2424,6 +2389,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5718334450758063988, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
+--- !u!114 &520658239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520658237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 0
 --- !u!1001 &539488633
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2503,6 +2481,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 539488636}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 539488637}
   m_SourcePrefab: {fileID: 100100000, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
 --- !u!4 &539488634 stripped
 Transform:
@@ -2536,6 +2517,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1581627940883760851, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+--- !u!114 &539488637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539488635}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 3
 --- !u!4 &542833905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7740293684519133431, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -2751,16 +2745,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &567964248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2888,16 +2872,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &584936247 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 546763995159263519, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -2983,6 +2957,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 589949223}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 589949224}
   m_SourcePrefab: {fileID: 100100000, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
 --- !u!4 &589949221 stripped
 Transform:
@@ -3016,6 +2993,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -501364576955774111, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+--- !u!114 &589949224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 589949222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 2
 --- !u!4 &594146007 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8219220410017071075, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -3404,16 +3394,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &684104402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2763574962796125585, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -3546,16 +3526,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &694475369
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3679,16 +3649,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &698207535 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -652439129495490909, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -3817,16 +3777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 2
-  turnSpeed: 1
-  idleDuration: 3
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &733693711
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3902,6 +3852,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 733693714}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 733693715}
   m_SourcePrefab: {fileID: 100100000, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
 --- !u!4 &733693712 stripped
 Transform:
@@ -3935,6 +3888,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1581627940883760851, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+--- !u!114 &733693715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733693713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 3
 --- !u!4 &736960181 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6169131863601090221, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -4024,6 +3990,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
       insertIndex: -1
       addedObject: {fileID: 771352255}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 771352256}
   m_SourcePrefab: {fileID: 100100000, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
 --- !u!4 &771352253 stripped
 Transform:
@@ -4057,6 +4026,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8805259119731886292, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
+--- !u!114 &771352256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771352254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 1
 --- !u!4 &779069655 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5850379632408866980, guid: 6e79b5f72e0d349c780a443680a6e696, type: 3}
@@ -4194,16 +4176,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &819618079 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5581737846524508343, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -4288,6 +4260,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 833513207}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 833513208}
   m_SourcePrefab: {fileID: 100100000, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
 --- !u!4 &833513205 stripped
 Transform:
@@ -4321,6 +4296,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -501364576955774111, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+--- !u!114 &833513208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 833513206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 2
 --- !u!4 &843649012 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2826771924517377062, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -4829,16 +4817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1052359661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4966,16 +4944,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1056894482
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5055,6 +5023,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1056894485}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1056894486}
   m_SourcePrefab: {fileID: 100100000, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
 --- !u!4 &1056894483 stripped
 Transform:
@@ -5088,6 +5059,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -501364576955774111, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+--- !u!114 &1056894486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056894484}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 2
 --- !u!4 &1092636965 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5288737329489493690, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -5513,16 +5497,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1144898615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5814,16 +5788,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1173945378
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6046,16 +6010,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1224598717
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6316,6 +6270,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1239823539}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1239823540}
   m_SourcePrefab: {fileID: 100100000, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
 --- !u!4 &1239823537 stripped
 Transform:
@@ -6349,6 +6306,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -501364576955774111, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+--- !u!114 &1239823540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239823538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 2
 --- !u!1001 &1248204863
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6514,6 +6484,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1268291820}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1268291821}
   m_SourcePrefab: {fileID: 100100000, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
 --- !u!4 &1268291818 stripped
 Transform:
@@ -6547,6 +6520,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8805259119731886292, guid: f68c83cdaf593884e90a95423b1b5444, type: 3}
+--- !u!114 &1268291821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268291819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 1
 --- !u!4 &1273002194 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2398198842817307337, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -6899,16 +6885,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1400941179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6984,6 +6960,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1400941182}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1400941183}
   m_SourcePrefab: {fileID: 100100000, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
 --- !u!4 &1400941180 stripped
 Transform:
@@ -7017,6 +6996,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1581627940883760851, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+--- !u!114 &1400941183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1400941181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 3
 --- !u!4 &1418629908 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -921305555656111657, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -7058,13 +7050,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0c27afcf2e04c40a939cc80ceb1434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minX: 0.9
-  maxX: -92.3
-  minY: -16.6
-  maxY: -24.6
-  minZ: -67
-  maxZ: 223
-  sizeScale: 0.5
 --- !u!23 &1454064310
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7256,16 +7241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1495968994
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7393,16 +7368,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &1532799041 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -1501937799768003823, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -7423,7 +7388,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555759846}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Garbage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7694,16 +7659,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1660723732
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7783,6 +7738,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1660723735}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1660723736}
   m_SourcePrefab: {fileID: 100100000, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
 --- !u!4 &1660723733 stripped
 Transform:
@@ -7816,6 +7774,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1581627940883760851, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+--- !u!114 &1660723736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660723734}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 3
 --- !u!4 &1661032091 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -2970165983587651245, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -8047,16 +8018,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &1730241823
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8184,16 +8145,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &1743545565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5887305546570869924, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -8326,16 +8277,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!4 &1790103172 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8488273847915732399, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -8516,6 +8457,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1815104079}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1815104080}
   m_SourcePrefab: {fileID: 100100000, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
 --- !u!4 &1815104077 stripped
 Transform:
@@ -8549,6 +8493,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -501364576955774111, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+--- !u!114 &1815104080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1815104078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 2
 --- !u!4 &1870687766 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -6797002064676456732, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -9145,6 +9102,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1981961335}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1981961336}
   m_SourcePrefab: {fileID: 100100000, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
 --- !u!4 &1981961333 stripped
 Transform:
@@ -9178,6 +9138,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5718334450758063988, guid: c4ba98113b75abb4086de0f6ad4ab1e2, type: 3}
+--- !u!114 &1981961336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981961334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 0
 --- !u!4 &2010676299 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7749548355995491240, guid: 5f58a927f61bb8243bf9b8b528854a70, type: 3}
@@ -9263,6 +9236,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2022918466}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2022918467}
   m_SourcePrefab: {fileID: 100100000, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
 --- !u!4 &2022918464 stripped
 Transform:
@@ -9296,6 +9272,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -501364576955774111, guid: ecffa5124fcf0f24da01c6e24651247c, type: 3}
+--- !u!114 &2022918467
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022918465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 2
 --- !u!1001 &2064213569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9371,6 +9360,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2064213572}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2064213573}
   m_SourcePrefab: {fileID: 100100000, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
 --- !u!4 &2064213570 stripped
 Transform:
@@ -9404,6 +9396,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1581627940883760851, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+--- !u!114 &2064213573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2064213571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 3
 --- !u!1001 &2070801242
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9479,6 +9484,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2070801245}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2070801246}
   m_SourcePrefab: {fileID: 100100000, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
 --- !u!4 &2070801243 stripped
 Transform:
@@ -9512,6 +9520,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 1581627940883760851, guid: c95cdb52b8fb76a40b31644db5a63fd6, type: 3}
+--- !u!114 &2070801246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2070801244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 10289df81b7b34a5a8f0346c04d7eb89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  garbageType: 3
 --- !u!4 &2076650739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5850379632408866980, guid: 6e79b5f72e0d349c780a443680a6e696, type: 3}
@@ -9745,16 +9766,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 3
-  turnSpeed: 2
-  idleDuration: 1
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &2116292364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9890,16 +9901,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &2125278091
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10027,16 +10028,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8844c82940db041ec841552e452b9d0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  swimSpeed: 4
-  turnSpeed: 2
-  idleDuration: 2
-  oceanArea: {fileID: 1454064309}
-  obstacleAvoidanceDistance: 3
-  obstacleMask:
-    serializedVersion: 2
-    m_Bits: 0
-  fishAvoidanceRadius: 2
-  fishAvoidanceStrength: 1
 --- !u!1001 &2127032172
 PrefabInstance:
   m_ObjectHideFlags: 0
