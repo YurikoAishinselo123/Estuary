@@ -6,23 +6,30 @@
     {
       "id": 1,
       "title": "Ambil Alat",
-      "description": "Ambil kamera dan penyedot sampah",
+      "description": "Ambil kamera dan alat penyedot sampah.",
       "qty": 2,
       "condition": ""
     },
     {
       "id": 2,
-      "title": "Bersihkan Sampah",
-      "description": "Bersihkan 5 sampah dengan alat penyedot.",
-      "qty": 20,
+      "title": "Ambil Foto Awal",
+      "description": "Ambil foto lingkungan yang kotor sebagai dokumentasi awal.",
+      "qty": 2,
       "condition": "1"
     },
     {
       "id": 3,
-      "title": "Ambil Foto",
-      "description": "Gunakan kamera untuk mengambil foto.",
-      "qty": 1,
+      "title": "Bersihkan Sampah",
+      "description": "Bersihkan 20 sampah menggunakan alat penyedot.",
+      "qty": 20,
       "condition": "2"
+    },
+    {
+      "id": 4,
+      "title": "Ambil Foto Akhir",
+      "description": "Ambil foto lingkungan yang telah bersih sebagai dokumentasi akhir.",
+      "qty": 1,
+      "condition": "3"
     }
   ]
 }
