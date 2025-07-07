@@ -5,5 +5,6 @@ public enum SceneName
     RuangKerja,
     Laut,
     Splashscreen,
-    Mainmenu
+    Mainmenu,
+    Cutscene
 }

@@ -106,4 +106,9 @@ public class LoadSceneManager : MonoBehaviour
             nextScene = null;
         }
     }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
 }
