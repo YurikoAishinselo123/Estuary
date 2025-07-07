@@ -3,7 +3,10 @@ using UnityEngine;
 
 public class CameraTool : MonoBehaviour, ITool
 {
+    public static CameraTool Instance { get; private set; }
     public static event System.Action<Texture2D> OnPhotoCaptured;
+    public static event System.Action OnPhotoCaptureStarted;
+
 
     [SerializeField] private Camera captureCamera;
     [SerializeField] private GameObject cameraFrame;
@@ -12,10 +15,19 @@ public class CameraTool : MonoBehaviour, ITool
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
         int width = Screen.width;
         int height = Screen.height;
         renderTexture = new RenderTexture(width, height, 24);
     }
+
 
     public void Activate()
     {
@@ -35,6 +47,7 @@ public class CameraTool : MonoBehaviour, ITool
 
     private IEnumerator CapturePhotoCoroutine()
     {
+        OnPhotoCaptureStarted?.Invoke();
         cameraFrame.SetActive(false);
 
         captureCamera.targetTexture = renderTexture;

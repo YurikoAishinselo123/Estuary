@@ -30,6 +30,28 @@ public class InteractionManager : MonoBehaviour
             int inventoryIndex = keyIndex - 1;
             InventoryManager.Instance.SelectItem(inventoryIndex);
         }
+
+        if (InputManager.Instance.Back)
+        {
+            // If photo UI is open, close it
+            if (PhotoDisplayUI.Instance != null && PhotoDisplayUI.Instance.IsVisible())
+            {
+                PhotoDisplayUI.Instance.HidePhoto();
+                CameraTool.Instance.Activate();
+                return;
+            }
+
+            // Else toggle pause
+            if (PauseUI.Instance != null)
+            {
+                if (PauseUI.Instance.isPaused)
+                    PauseUI.Instance.ResumeGame();
+                else
+                    PauseUI.Instance.PauseGame();
+                return;
+            }
+        }
+
     }
 
     private void HandleInteraction()
