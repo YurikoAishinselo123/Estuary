@@ -1,14 +1,10 @@
 {
-  "conversationId": "dayat_complete",
+  "conversationId": "dayat_ocean_visited",
   "npcName": "Dayat",
   "dialogues": [
     {
       "speaker": "Dayat",
-      "text": "Kerja bagus, Asep. Foto dan bukti kamu akan saya laporkan."
-    },
-    {
-      "speaker": "Asep",
-      "text": "Terima kasih, Pak Dayat!"
+      "text": "Kamu sudah lihat sendiri kondisinya kan? Sampah sangat parah!"
     }
   ]
 }

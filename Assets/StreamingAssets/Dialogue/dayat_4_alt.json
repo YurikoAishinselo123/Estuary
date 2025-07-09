@@ -1,0 +1,18 @@
+{
+  "conversationId": "dayat_4_alt",
+  "npcName": "Dayat",
+  "dialogues": [
+    {
+      "speaker": "Dayat",
+      "text": "Asep! Kamu sudah ke laut dan tahu kondisi di sana, kenapa belum kamu bersihkan juga?"
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Kita tidak bisa menunggu lama! Sampah itu bisa makin menyebar!"
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Segera bersihkan sebelum semuanya terlambat!"
+    }
+  ]
+}

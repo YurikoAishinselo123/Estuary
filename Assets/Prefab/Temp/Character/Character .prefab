@@ -379,7 +379,7 @@ MonoBehaviour:
   walkSpeed: 3
   sprintSpeed: 12
   diveSpeed: 4
-  diveSprintSpeed: 20
+  diveSprintSpeed: 30
   jumpHeight: 1.5
   gravity: -9.81
   mouseSensitivity: 1

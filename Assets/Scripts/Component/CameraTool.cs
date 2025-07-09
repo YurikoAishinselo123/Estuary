@@ -7,12 +7,10 @@ public class CameraTool : MonoBehaviour, ITool
     public static event System.Action<Texture2D> OnPhotoCaptured;
     public static event System.Action OnPhotoCaptureStarted;
 
-
     [SerializeField] private Camera captureCamera;
     [SerializeField] private GameObject cameraFrame;
 
     private RenderTexture renderTexture;
-    private int photoCount = 0;
 
     private void Awake()
     {
@@ -29,22 +27,29 @@ public class CameraTool : MonoBehaviour, ITool
         renderTexture = new RenderTexture(width, height, 24);
     }
 
-
     public void Activate()
     {
-        Debug.Log("camera active");
+        Debug.Log("CameraTool: Activated");
         cameraFrame.SetActive(true);
     }
 
     public void Deactivate()
     {
-        Debug.Log("camera deactive");
+        Debug.Log("CameraTool: Deactivated");
         cameraFrame.SetActive(false);
     }
 
     public void Use()
     {
         StartCoroutine(CapturePhotoCoroutine());
+    }
+
+    private Texture2D CloneTexture(Texture2D source)
+    {
+        Texture2D newTex = new Texture2D(source.width, source.height, source.format, false);
+        newTex.SetPixels(source.GetPixels());
+        newTex.Apply();
+        return newTex;
     }
 
     private IEnumerator CapturePhotoCoroutine()
@@ -69,28 +74,34 @@ public class CameraTool : MonoBehaviour, ITool
 
         if (currentMission != null)
         {
-            // Misi 2: Ambil Foto Awal
+            // Mission 2: Take dirty environment photo
             if (currentMission.id == 2 && !GameProgressManager.Instance.HasCapturedDirtyEnvironmentForTheFirstTime)
             {
                 GameProgressManager.Instance.HasCapturedDirtyEnvironmentForTheFirstTime = true;
-                PhotoSaveHelper.SavePhoto(newTexture);
+                Texture2D clone = CloneTexture(newTexture);
+                GameProgressManager.Instance.SetDirtyPhoto(clone);
+                PhotoSaveHelper.SavePhoto(clone);
                 MissionManager.Instance.ReportMissionProgress(1);
                 MissionManager.Instance.CompleteCurrentMission();
             }
-            // Misi 4: Ambil Foto Akhir
+
+            // Mission 4: Take clean environment photo
             else if (currentMission.id == 4 && !GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime)
             {
                 GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime = true;
-                Debug.Log("HasCapturedCleanEnvironmentForTheFirstTime : " + GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime);
-                PhotoSaveHelper.SavePhoto(newTexture);
+                Texture2D clone = CloneTexture(newTexture);
+                GameProgressManager.Instance.SetCleanPhoto(clone);
+                PhotoSaveHelper.SavePhoto(clone);
                 MissionManager.Instance.ReportMissionProgress(1);
             }
         }
 
-        // Tetap kirim ke UI, meskipun tidak disimpan
         OnPhotoCaptured?.Invoke(newTexture);
-        // PhotoDisplayUI.Instance.HidePhoto();
         GameStateManager.Instance.SetState(GameState.PhotoReview);
     }
 
+
+    
+
+    
 }
