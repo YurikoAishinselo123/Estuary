@@ -69,6 +69,12 @@ public class ToolManager : MonoBehaviour
 
     public void UseTool()
     {
+        if (GameStateManager.Instance.CurrentState != GameState.Gameplay)
+        {
+            Debug.LogWarning("[ToolManager] Tool use blocked in non-gameplay state.");
+            return;
+        }
+
         if (currentTool == null)
         {
             Debug.LogWarning("[ToolManager] No tool selected.");
@@ -77,4 +83,5 @@ public class ToolManager : MonoBehaviour
 
         currentTool.Use();
     }
+
 }

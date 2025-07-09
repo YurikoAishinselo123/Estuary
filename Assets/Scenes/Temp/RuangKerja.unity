@@ -541,13 +541,14 @@ GameObject:
   - component: {fileID: 54317247}
   - component: {fileID: 54317246}
   - component: {fileID: 54317245}
+  - component: {fileID: 54317248}
   m_Layer: 0
   m_Name: Reflection Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &54317244
 RectTransform:
   m_ObjectHideFlags: 0
@@ -631,6 +632,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 5
   m_TargetDisplay: 0
+--- !u!114 &54317248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54317243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7bd8f914accd4ba2a38d9a68c4e550e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasGroup: {fileID: 1220593441}
+  fadeDuration: 1
 --- !u!1 &56221412
 GameObject:
   m_ObjectHideFlags: 0
@@ -7907,7 +7922,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1220593440
 RectTransform:
   m_ObjectHideFlags: 0
@@ -13684,12 +13699,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2140233419}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.0391626, y: 0.89, z: 4.1859326}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.0515776, y: -0.49891126, z: -4.6041026}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 7244475024668751471}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &27032059365018615
 GameObject:
@@ -14452,7 +14467,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 431.51, y: -50}
-  m_SizeDelta: {x: 50.24, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1296068866294200126
 CanvasRenderer:
@@ -17518,7 +17533,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 181.51001, y: -50}
-  m_SizeDelta: {x: 276.28, y: 50}
+  m_SizeDelta: {x: 0, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &5235258086694279804
 GameObject:
@@ -18893,6 +18908,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2140233422}
   - {fileID: 255073335024368177}
   - {fileID: 1572985312252873288}
   - {fileID: 867521052213463439}
@@ -19901,5 +19917,4 @@ SceneRoots:
   - {fileID: 1693894200}
   - {fileID: 1557349231}
   - {fileID: 1037841229}
-  - {fileID: 2140233422}
   - {fileID: 7244475024668751471}

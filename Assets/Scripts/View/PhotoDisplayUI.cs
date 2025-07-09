@@ -34,11 +34,13 @@ public class PhotoDisplayUI : MonoBehaviour
 
     private void DisplayPhoto(Texture2D texture)
     {
-        ShowPhoto(texture);
+        ShowPhoto(texture); 
     }
 
     public void ShowPhoto(Texture2D texture)
     {
+        Debug.Log("show photo display");
+
         if (photoImage != null)
             photoImage.texture = texture;
 
@@ -48,9 +50,14 @@ public class PhotoDisplayUI : MonoBehaviour
 
     public void HidePhoto()
     {
+        Debug.Log("hide photo display");
         if (photoDisplayPanel != null)
+        {
             photoDisplayPanel.SetActive(false);
+        }
+        GameStateManager.Instance?.ResumeGameplay();
     }
+
 
     public bool IsVisible()
     {
