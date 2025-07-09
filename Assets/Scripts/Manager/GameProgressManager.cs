@@ -3,12 +3,16 @@ using UnityEngine;
 public class GameProgressManager : MonoBehaviour
 {
     public static GameProgressManager Instance { get; private set; }
+    public bool hasTalkedToDayatForTheFirstTime = false;
 
     private const string MISSION_STAGE_KEY = "MissionStage";
     private const string TALKED_TO_DAYAT_KEY = "TalkedToDayat";
     private const string LEFT_RUANG_ATASAN_KEY = "LeftRuangAtasan";
     private const string VISITED_OCEAN_KEY = "VisitedOcean";
     private const string ENTERED_RUANG_ATASAN_KEY = "EnteredRuangAtasan";
+    private const string DETECTED_GARBAGE_KEY = "DetectedGarbage";
+    private const string CAPTURED_DIRTY_ENV_KEY = "CapturedDirtyEnv";
+
 
     private void Awake()
     {
@@ -36,10 +40,15 @@ public class GameProgressManager : MonoBehaviour
             PlayerPrefs.SetInt(TALKED_TO_DAYAT_KEY, value ? 1 : 0);
             PlayerPrefs.Save();
             Debug.Log("[GameProgressManager] Player has talked to Dayat.");
-            if (GuidanceManager.Instance != null)
+            if (!hasTalkedToDayatForTheFirstTime)
             {
-                GuidanceManager.Instance.ShowNextGuidance();
+                hasTalkedToDayatForTheFirstTime = true;
+                if (GuidanceManager.Instance != null)
+                {
+                    GuidanceManager.Instance.ShowNextGuidance();
+                }
             }
+            
         }
     }
 
@@ -56,7 +65,7 @@ public class GameProgressManager : MonoBehaviour
     }
 
     // 🌊 Menyimpan apakah pemain sudah pernah ke laut
-    public bool HasVisitedOcean
+    public bool HasVisitedOceanForTheFirstTime
     {
         get => PlayerPrefs.GetInt(VISITED_OCEAN_KEY, 0) == 1;
         set
@@ -77,17 +86,76 @@ public class GameProgressManager : MonoBehaviour
         }
     }
 
+    // 🗑️ Menyimpan apakah pemain sudah mendeteksi sampah untuk pertama kali
+    public bool HasDetectedGarbageForTheFirstTime
+    {
+        get => PlayerPrefs.GetInt(DETECTED_GARBAGE_KEY, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(DETECTED_GARBAGE_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log("[GameProgressManager] Player has detected garbage for the first time.");
+        }
+    }
+
+    public bool HasCapturedDirtyEnvironmentForTheFirstTime
+    {
+        get => PlayerPrefs.GetInt(CAPTURED_DIRTY_ENV_KEY, 0) == 1;
+        set
+        {
+            if (!HasDetectedGarbageForTheFirstTime)
+            {
+                Debug.LogWarning("[GameProgressManager] Tidak bisa capture dirty environment sebelum mendeteksi sampah.");
+                return;
+            }
+
+            PlayerPrefs.SetInt(CAPTURED_DIRTY_ENV_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log("[GameProgressManager] Player has captured dirty environment for the first time.");
+
+            if (value && GuidanceManager.Instance != null)
+            {
+                GuidanceManager.Instance.ShowNextGuidance();
+            }
+        }
+    }
+
+    private const string CAPTURED_CLEAN_ENV_KEY = "CapturedCleanEnv";
+
+    public bool HasCapturedCleanEnvironmentForTheFirstTime
+    {
+        get => PlayerPrefs.GetInt(CAPTURED_CLEAN_ENV_KEY, 0) == 1;
+        set
+        {
+            if (!HasCapturedDirtyEnvironmentForTheFirstTime)
+            {
+                Debug.LogWarning("[GameProgressManager] Tidak bisa capture dirty environment sebelum mendeteksi sampah.");
+                return;
+            }
+
+            PlayerPrefs.SetInt(CAPTURED_CLEAN_ENV_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log("[GameProgressManager] Player has captured clean environment for the first time.");
+
+            if (value && GuidanceManager.Instance != null)
+            {
+                GuidanceManager.Instance.ShowNextGuidance();
+            }
+        }
+    }
+
+
+
     // 📊 Menentukan misi tahap ke berapa
     public int GetMissionStage()
     {
         int stage = 0;
-        Debug.Log("Has visited ocean : " + HasVisitedOcean);
 
         if (!HasTalkedToDayat)
             stage = 0;
         else if (MissionSaveHelper.IsMissionCompleted(3))
             stage = 4;
-        else if (HasVisitedOcean)
+        else if (HasVisitedOceanForTheFirstTime)
             stage = 3;
         else if (MissionSaveHelper.IsMissionCompleted(1))
             stage = 2;
@@ -141,6 +209,11 @@ public class GameProgressManager : MonoBehaviour
         PlayerPrefs.DeleteKey(LEFT_RUANG_ATASAN_KEY);
         PlayerPrefs.DeleteKey(VISITED_OCEAN_KEY);
         PlayerPrefs.DeleteKey(ENTERED_RUANG_ATASAN_KEY);
+        PlayerPrefs.DeleteKey(DETECTED_GARBAGE_KEY);
+        PlayerPrefs.DeleteKey(CAPTURED_DIRTY_ENV_KEY);
+        PlayerPrefs.DeleteKey(CAPTURED_CLEAN_ENV_KEY);
+
+
         PlayerPrefs.Save();
 
         Debug.Log("[GameProgressManager] Progress reset.");

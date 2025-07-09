@@ -14,14 +14,14 @@
       "id": 2,
       "title": "Ambil Foto Awal",
       "description": "Ambil foto lingkungan yang kotor sebagai dokumentasi awal.",
-      "qty": 2,
+      "qty": 1,
       "condition": "1"
     },
     {
       "id": 3,
       "title": "Bersihkan Sampah",
       "description": "Bersihkan 20 sampah menggunakan alat penyedot.",
-      "qty": 20,
+      "qty": 2,
       "condition": "2"
     },
     {

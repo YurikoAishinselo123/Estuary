@@ -45,7 +45,6 @@ public class DetectionManager : MonoBehaviour
     {
         currentDetected = null;
 
-        // Step 1: OverlapSphere to detect nearby objects
         Collider[] hits = Physics.OverlapSphere(playerCamera.position, detectionRange);
 
         foreach (Collider hit in hits)
@@ -60,12 +59,20 @@ public class DetectionManager : MonoBehaviour
                 {
                     currentDetected = detectable;
                     OnDetect?.Invoke(detectable.GetDisplayName());
+
+                    // Cek jika pertama kali mendeteksi sampah
+                    if (!GameProgressManager.Instance.HasDetectedGarbageForTheFirstTime &&
+                        hit.GetComponent<Garbage>() != null)
+                    {
+                        GameProgressManager.Instance.HasDetectedGarbageForTheFirstTime = true;
+                        GuidanceManager.Instance?.ShowNextGuidance();
+                    }
+
                     return;
                 }
             }
         }
 
-        // Step 2: Fan of raycasts
         float step = detectionAngle / (rayCount - 1);
         float startAngle = -detectionAngle / 2f;
 
@@ -82,6 +89,15 @@ public class DetectionManager : MonoBehaviour
                 {
                     currentDetected = detectable;
                     OnDetect?.Invoke(detectable.GetDisplayName());
+
+                    // Cek jika pertama kali mendeteksi sampah
+                    if (!GameProgressManager.Instance.HasDetectedGarbageForTheFirstTime &&
+                        hit.collider.GetComponent<Garbage>() != null)
+                    {
+                        GameProgressManager.Instance.HasDetectedGarbageForTheFirstTime = true;
+                        GuidanceManager.Instance?.ShowNextGuidance();
+                    }
+
                     Debug.DrawRay(playerCamera.position, direction * detectionRange, Color.green, 0.1f);
                     return;
                 }
@@ -90,7 +106,6 @@ public class DetectionManager : MonoBehaviour
             Debug.DrawRay(playerCamera.position, direction * detectionRange, Color.red, 0.1f);
         }
 
-        // Nothing detected
         OnDetect?.Invoke(string.Empty);
     }
 

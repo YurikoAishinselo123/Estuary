@@ -6,6 +6,8 @@ using System.IO;
 public class GuidanceManager : MonoBehaviour
 {
     public static GuidanceManager Instance { get; private set; }
+    private const string GUIDANCE_INDEX_KEY = "GuidanceIndex";
+
 
     public event Action<string> OnGuidanceChanged;
 
@@ -33,6 +35,8 @@ public class GuidanceManager : MonoBehaviour
         Debug.Log("[GuidanceManager] Starting with index: " + currentIndex);
         Debug.Log("[GuidanceManager] Guidance count: " + guidanceList?.Count);
 
+        LoadSavedIndex(); 
+
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player != null)
         {
@@ -40,8 +44,9 @@ public class GuidanceManager : MonoBehaviour
             player.OnPlayerJumped += HandlePlayerJumped;
         }
 
-        ShowNextGuidance(); // Show first message manually
+        ShowNextGuidance(); // Show saved message or first one
     }
+
 
 
     private void LoadGuidanceFromFile()
@@ -73,9 +78,6 @@ public class GuidanceManager : MonoBehaviour
     }
 
 
-
-
-
     private void HandlePlayerStartedMoving()
     {
         if (currentIndex == 0)
@@ -102,6 +104,7 @@ public class GuidanceManager : MonoBehaviour
         }
 
         currentIndex++;
+        SaveCurrentIndex();
         if (currentIndex >= 0 && currentIndex < guidanceList.Count)
         {
             string text = guidanceList[currentIndex];
@@ -114,10 +117,26 @@ public class GuidanceManager : MonoBehaviour
         }
     }
 
+    private void SaveCurrentIndex()
+    {
+        PlayerPrefs.SetInt(GUIDANCE_INDEX_KEY, currentIndex);
+        PlayerPrefs.Save();
+        Debug.Log("[GuidanceManager] Saved guidance index: " + currentIndex);
+    }
+
+    private void LoadSavedIndex()
+    {
+        currentIndex = PlayerPrefs.GetInt(GUIDANCE_INDEX_KEY, -1);
+        Debug.Log("[GuidanceManager] Loaded saved index: " + currentIndex);
+    }
+
 
     public void ResetGuidance()
     {
         currentIndex = -1;
+        PlayerPrefs.DeleteKey(GUIDANCE_INDEX_KEY);
+        PlayerPrefs.Save();
         Debug.Log("[GuidanceManager] Guidance reset.");
     }
+
 }

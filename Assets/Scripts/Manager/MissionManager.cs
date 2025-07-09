@@ -17,6 +17,10 @@ public class MissionManager : MonoBehaviour
     private MissionModel currentMission;
     private HashSet<string> collectedItemIDs = new();
 
+
+    private int garbageCollected = 0;
+
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -62,6 +66,8 @@ public class MissionManager : MonoBehaviour
         if (currentMission != null)
         {
             Debug.Log($"[MissionManager] Current Mission: {currentMission.title}");
+            collectedItemIDs.Clear();      // Reset for mission 1
+            garbageCollected = 0;          // Reset for mission 3
             OnMissionUpdated?.Invoke(currentMission);
         }
         else
@@ -70,6 +76,23 @@ public class MissionManager : MonoBehaviour
             OnMissionUpdated?.Invoke(null); // Hide UI if needed
         }
     }
+
+    public void ReportGarbageCollected()
+    {
+        if (currentMission == null || currentMission.id != 3) return;
+
+        garbageCollected++;
+        Debug.Log($"[MissionManager] Garbage collected: {garbageCollected}/{currentMission.qty}");
+        OnMissionProgressUpdated?.Invoke(garbageCollected);
+
+        if (garbageCollected >= currentMission.qty)
+        {
+            GuidanceManager.Instance.ShowNextGuidance();
+            CompleteCurrentMission();
+        }
+    }
+    
+
 
     public void CompleteCurrentMission()
     {
@@ -140,6 +163,7 @@ public class MissionManager : MonoBehaviour
 
         if (allCollected)
         {
+            GuidanceManager.Instance.ShowNextGuidance();
             CompleteCurrentMission();
         }
     }
