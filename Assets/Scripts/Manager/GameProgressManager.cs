@@ -3,6 +3,8 @@ using UnityEngine;
 public class GameProgressManager : MonoBehaviour
 {
     public static GameProgressManager Instance { get; private set; }
+    public Texture2D DirtyEnvironmentPhoto { get; private set; }
+    public Texture2D CleanEnvironmentPhoto { get; private set; }
     public bool hasTalkedToDayatForTheFirstTime = false;
 
     private const string MISSION_STAGE_KEY = "MissionStage";
@@ -13,7 +15,9 @@ public class GameProgressManager : MonoBehaviour
     private const string DETECTED_GARBAGE_KEY = "DetectedGarbage";
     private const string CAPTURED_DIRTY_ENV_KEY = "CapturedDirtyEnv";
     private const string SHOWN_REFLECTION_KEY = "ShownReflection";
-
+    private const string REPORTED_TO_DAYAT_KEY = "ReportedToDayat";
+    private const string TALKED_TO_DAYAT_STAGE4_KEY = "TalkedToDayatStage4";
+    private const string COMPLETED_ALL_OBJECTIVES_KEY = "CompletedAllObjectives";
 
     private void Awake()
     {
@@ -30,6 +34,16 @@ public class GameProgressManager : MonoBehaviour
     private void Start()
     {
         LoadMissionStage();
+    }
+
+    public void SetDirtyPhoto(Texture2D photo)
+    {
+        DirtyEnvironmentPhoto = photo;
+    }
+
+    public void SetCleanPhoto(Texture2D photo)
+    {
+        CleanEnvironmentPhoto = photo;
     }
 
     // 🗣️ Menyimpan apakah pemain sudah bicara dengan Dayat
@@ -49,7 +63,7 @@ public class GameProgressManager : MonoBehaviour
                     GuidanceManager.Instance.ShowNextGuidance();
                 }
             }
-            
+
         }
     }
 
@@ -156,6 +170,37 @@ public class GameProgressManager : MonoBehaviour
         }
     }
 
+    public bool HasReportedToDayat
+    {
+        get => PlayerPrefs.GetInt(REPORTED_TO_DAYAT_KEY, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(REPORTED_TO_DAYAT_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log("[GameProgressManager] Player has reported to Dayat.");
+        }
+    }
+
+    public bool HasTalkedToDayatAtStage4
+    {
+        get => PlayerPrefs.GetInt(TALKED_TO_DAYAT_STAGE4_KEY, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(TALKED_TO_DAYAT_STAGE4_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+        }
+    }
+
+    public bool CompletedAllGameObjective
+    {
+        get => PlayerPrefs.GetInt(COMPLETED_ALL_OBJECTIVES_KEY, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(COMPLETED_ALL_OBJECTIVES_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log("[GameProgressManager] CompletedAllGameObjective set to: " + value);
+        }
+    }
 
     // 📊 Menentukan misi tahap ke berapa
     public int GetMissionStage()
@@ -164,7 +209,9 @@ public class GameProgressManager : MonoBehaviour
 
         if (!HasTalkedToDayat)
             stage = 0;
-        else if (MissionSaveHelper.IsMissionCompleted(3))
+        else if (HasShownReflection)
+            stage = 5;
+        else if (HasDetectedGarbageForTheFirstTime && !HasReportedToDayat && !HasTalkedToDayatAtStage4)
             stage = 4;
         else if (HasVisitedOceanForTheFirstTime)
             stage = 3;
@@ -224,6 +271,9 @@ public class GameProgressManager : MonoBehaviour
         PlayerPrefs.DeleteKey(CAPTURED_DIRTY_ENV_KEY);
         PlayerPrefs.DeleteKey(CAPTURED_CLEAN_ENV_KEY);
         PlayerPrefs.DeleteKey(SHOWN_REFLECTION_KEY);
+        PlayerPrefs.DeleteKey(REPORTED_TO_DAYAT_KEY);
+        PlayerPrefs.DeleteKey(TALKED_TO_DAYAT_STAGE4_KEY);
+        PlayerPrefs.DeleteKey(COMPLETED_ALL_OBJECTIVES_KEY);
 
         PlayerPrefs.Save();
 

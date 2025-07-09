@@ -32,8 +32,8 @@ public class GuidanceManager : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log("[GuidanceManager] Starting with index: " + currentIndex);
-        Debug.Log("[GuidanceManager] Guidance count: " + guidanceList?.Count);
+        // Debug.Log("[GuidanceManager] Starting with index: " + currentIndex);
+        // Debug.Log("[GuidanceManager] Guidance count: " + guidanceList?.Count);
 
         LoadSavedIndex(); 
 

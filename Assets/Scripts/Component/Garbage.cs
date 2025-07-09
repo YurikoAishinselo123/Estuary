@@ -2,20 +2,15 @@ using UnityEngine;
 
 public class Garbage : MonoBehaviour, IDetectable
 {
-    [SerializeField] private GarbageType garbageType;
+    [SerializeField] private GarbageType type;
 
-    public string GetDisplayName()
-    {
-        return garbageType.ToString().Replace("_", " ");
-    }
-
-    public GarbageType GetGarbageType()
-    {
-        return garbageType;
-    }
+    public string GetDisplayName() => type.ToString();
 
     public string GetFact()
     {
-        return GarbageFactHelper.GetFact(garbageType);
+        return GarbageFactDatabase.Instance?.GetFact(type);
     }
+
+    public GarbageType GetGarbageType() => type;
 }
+

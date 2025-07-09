@@ -53,9 +53,15 @@ public class LoadSceneManager : MonoBehaviour
                 if (player.TryGetComponent(out PlayerController playerController))
                 {
                     if (nextScene.Value == SceneName.Laut)
+                    {
                         playerController.SetMovementMode(MovementMode.Diving);
+                        inOcean = true;
+                    }
                     else
+                    {
                         playerController.SetMovementMode(MovementMode.Walking);
+                        inOcean = false;
+                    }
                 }
             }
 
@@ -74,12 +80,7 @@ public class LoadSceneManager : MonoBehaviour
             {
                 GuidanceManager.Instance.ShowNextGuidance();
                 GameProgressManager.Instance.HasVisitedOceanForTheFirstTime = true;
-                inOcean = true;
                 Debug.Log("[GameProgress] Player has entered Laut scene.");
-            }
-            else
-            {
-                inOcean = false;
             }
 
             // ✅ Cek: Pertama kali masuk ke Ruang Atasan

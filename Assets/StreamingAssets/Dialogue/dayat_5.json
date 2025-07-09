@@ -1,0 +1,26 @@
+{
+  "conversationId": "dayat_complete",
+  "npcName": "Dayat",
+  "dialogues": [
+    {
+      "speaker": "Asep",
+      "text": "Pak Dayat, saya sudah membersihkan laut. Sampahnya sangat banyak dan mencemari lingkungan."
+    },
+    {
+      "speaker": "Asep",
+      "text": "Saya juga sudah mengambil foto sebelum dan sesudah pembersihan sebagai bukti."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Kerja bagus, Asep. Terima kasih sudah berinisiatif menjaga kebersihan laut."
+    },
+    {
+      "speaker": "Dayat",
+      "text": "Kami semua sangat menghargai usaha kamu. Laut sekarang jauh lebih bersih."
+    },
+    {
+      "speaker": "Asep",
+      "text": "Terima kasih, Pak Dayat!"
+    }
+  ]
+}
