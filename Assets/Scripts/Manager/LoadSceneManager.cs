@@ -70,10 +70,10 @@ public class LoadSceneManager : MonoBehaviour
             }
 
             // ✅ Cek: Pertama kali masuk ke Laut
-            if (nextScene.Value == SceneName.Laut)
+            if (nextScene.Value == SceneName.Laut && !GameProgressManager.Instance.HasVisitedOceanForTheFirstTime)
             {
                 GuidanceManager.Instance.ShowNextGuidance();
-                GameProgressManager.Instance.HasVisitedOcean = true;
+                GameProgressManager.Instance.HasVisitedOceanForTheFirstTime = true;
                 inOcean = true;
                 Debug.Log("[GameProgress] Player has entered Laut scene.");
             }

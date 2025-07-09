@@ -12,6 +12,7 @@ public class CameraTool : MonoBehaviour, ITool
     [SerializeField] private GameObject cameraFrame;
 
     private RenderTexture renderTexture;
+    private int photoCount = 0;
 
     private void Awake()
     {
@@ -56,7 +57,6 @@ public class CameraTool : MonoBehaviour, ITool
         RenderTexture.active = renderTexture;
         captureCamera.Render();
 
-        // Create a new Texture2D every time
         Texture2D newTexture = new Texture2D(renderTexture.width, renderTexture.height, TextureFormat.RGB24, false);
         newTexture.ReadPixels(new Rect(0, 0, renderTexture.width, renderTexture.height), 0, 0);
         newTexture.Apply();
@@ -64,8 +64,30 @@ public class CameraTool : MonoBehaviour, ITool
         captureCamera.targetTexture = null;
         RenderTexture.active = null;
 
-        // Save and display the captured photo
-        PhotoSaveHelper.SavePhoto(newTexture);
+        var currentMission = MissionManager.Instance.CurrentMission;
+
+        if (currentMission != null)
+        {
+            // Misi 2: Ambil Foto Awal
+            if (currentMission.id == 2 && !GameProgressManager.Instance.HasCapturedDirtyEnvironmentForTheFirstTime)
+            {
+                GameProgressManager.Instance.HasCapturedDirtyEnvironmentForTheFirstTime = true;
+                PhotoSaveHelper.SavePhoto(newTexture);
+                MissionManager.Instance.ReportMissionProgress(1);
+                MissionManager.Instance.CompleteCurrentMission();
+            }
+            // Misi 4: Ambil Foto Akhir
+            else if (currentMission.id == 4 && !GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime)
+            {
+                GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime = true;
+                PhotoSaveHelper.SavePhoto(newTexture);
+                MissionManager.Instance.ReportMissionProgress(1);
+                MissionManager.Instance.CompleteCurrentMission();
+            }
+        }
+
+        // Tetap kirim ke UI, meskipun tidak disimpan
         OnPhotoCaptured?.Invoke(newTexture);
     }
+
 }
