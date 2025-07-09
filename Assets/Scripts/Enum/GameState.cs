@@ -8,5 +8,7 @@ public enum GameState
     Mainmenu,
     Cutscene,
     Dialogue,
-    Paused
+    Paused,
+    PhotoReview,
+    Reflection,
 }

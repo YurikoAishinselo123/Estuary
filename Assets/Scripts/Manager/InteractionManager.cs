@@ -14,21 +14,26 @@ public class InteractionManager : MonoBehaviour
             return;
         }
 
-        if (InputManager.Instance.Interact)
+        bool isGameplay = GameStateManager.Instance.CurrentState == GameState.Gameplay;
+
+        if (isGameplay && InputManager.Instance.Interact)
         {
             HandleInteraction();
         }
 
-        if (InputManager.Instance.Action)
+        if (isGameplay && InputManager.Instance.Action)
         {
             ToolManager.Instance.UseTool();
         }
 
-        int keyIndex = InputManager.Instance.GetSelectedItemByKey();
-        if (keyIndex != -1)
+        if (isGameplay)
         {
-            int inventoryIndex = keyIndex - 1;
-            InventoryManager.Instance.SelectItem(inventoryIndex);
+            int keyIndex = InputManager.Instance.GetSelectedItemByKey();
+            if (keyIndex != -1)
+            {
+                int inventoryIndex = keyIndex - 1;
+                InventoryManager.Instance.SelectItem(inventoryIndex);
+            }
         }
 
         if (InputManager.Instance.Back)
@@ -37,12 +42,18 @@ public class InteractionManager : MonoBehaviour
             if (PhotoDisplayUI.Instance != null && PhotoDisplayUI.Instance.IsVisible())
             {
                 PhotoDisplayUI.Instance.HidePhoto();
-                CameraTool.Instance.Activate();
+
+                // Only activate camera tool if returning to gameplay
+                if (isGameplay)
+                {
+                    CameraTool.Instance.Activate();
+                }
+
                 return;
             }
 
-            // Else toggle pause
-            if (PauseUI.Instance != null)
+            // Pause is allowed only in gameplay
+            if (isGameplay && PauseUI.Instance != null)
             {
                 if (PauseUI.Instance.isPaused)
                     PauseUI.Instance.ResumeGame();

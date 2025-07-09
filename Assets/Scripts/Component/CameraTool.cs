@@ -38,6 +38,7 @@ public class CameraTool : MonoBehaviour, ITool
 
     public void Deactivate()
     {
+        Debug.Log("camera deactive");
         cameraFrame.SetActive(false);
     }
 
@@ -80,14 +81,16 @@ public class CameraTool : MonoBehaviour, ITool
             else if (currentMission.id == 4 && !GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime)
             {
                 GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime = true;
+                Debug.Log("HasCapturedCleanEnvironmentForTheFirstTime : " + GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime);
                 PhotoSaveHelper.SavePhoto(newTexture);
                 MissionManager.Instance.ReportMissionProgress(1);
-                MissionManager.Instance.CompleteCurrentMission();
             }
         }
 
         // Tetap kirim ke UI, meskipun tidak disimpan
         OnPhotoCaptured?.Invoke(newTexture);
+        // PhotoDisplayUI.Instance.HidePhoto();
+        GameStateManager.Instance.SetState(GameState.PhotoReview);
     }
 
 }

@@ -12,6 +12,7 @@ public class GameProgressManager : MonoBehaviour
     private const string ENTERED_RUANG_ATASAN_KEY = "EnteredRuangAtasan";
     private const string DETECTED_GARBAGE_KEY = "DetectedGarbage";
     private const string CAPTURED_DIRTY_ENV_KEY = "CapturedDirtyEnv";
+    private const string SHOWN_REFLECTION_KEY = "ShownReflection";
 
 
     private void Awake()
@@ -144,6 +145,16 @@ public class GameProgressManager : MonoBehaviour
         }
     }
 
+    public bool HasShownReflection
+    {
+        get => PlayerPrefs.GetInt(SHOWN_REFLECTION_KEY, 0) == 1;
+        set
+        {
+            PlayerPrefs.SetInt(SHOWN_REFLECTION_KEY, value ? 1 : 0);
+            PlayerPrefs.Save();
+            Debug.Log($"[GameProgressManager] HasShownReflection set to {value}");
+        }
+    }
 
 
     // 📊 Menentukan misi tahap ke berapa
@@ -212,7 +223,7 @@ public class GameProgressManager : MonoBehaviour
         PlayerPrefs.DeleteKey(DETECTED_GARBAGE_KEY);
         PlayerPrefs.DeleteKey(CAPTURED_DIRTY_ENV_KEY);
         PlayerPrefs.DeleteKey(CAPTURED_CLEAN_ENV_KEY);
-
+        PlayerPrefs.DeleteKey(SHOWN_REFLECTION_KEY);
 
         PlayerPrefs.Save();
 

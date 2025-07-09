@@ -10,6 +10,8 @@ public class MissionManager : MonoBehaviour
     public event Action<ChapterModel> OnChapterLoaded;
     public event Action<MissionModel> OnMissionUpdated;
     public event Action<int> OnMissionProgressUpdated;
+    public event Action OnReflectionMissionComplete;
+
 
     public ChapterModel CurrentChapter { get; private set; }
     public MissionModel CurrentMission => currentMission;
@@ -38,7 +40,23 @@ public class MissionManager : MonoBehaviour
         int currentChapterIndex = ChapterSaveHelper.GetCurrentChapter();
         Debug.Log("current chapter : " + currentChapterIndex);
         LoadChapter($"Chapter{currentChapterIndex}");
+
+        GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
     }
+
+    private void HandleGameStateChanged(GameState newState)
+    {
+        if (newState == GameState.Gameplay &&
+            currentMission != null &&
+            currentMission.id == 4 &&
+            GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime)
+        {
+            Debug.Log("[MissionManager] Completing mission 4 after photo review");
+            CompleteCurrentMission();
+        }
+    }
+
+
 
     private void LoadChapter(string fileName)
     {
@@ -100,6 +118,11 @@ public class MissionManager : MonoBehaviour
         {
             Debug.LogWarning("[MissionManager] No active mission to complete.");
             return;
+        }
+
+        if (currentMission.id == 4)
+        {
+            OnReflectionMissionComplete?.Invoke();
         }
 
         Debug.Log($"[MissionManager] Mission completed: {currentMission.title}");
