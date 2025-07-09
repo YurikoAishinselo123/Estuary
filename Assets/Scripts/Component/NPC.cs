@@ -93,6 +93,4 @@ public class NPC : MonoBehaviour, IDetectable
     {
         LoadDialogueBasedOnStage(); // Reload dialogue when state might have changed
     }
-
-    
 }

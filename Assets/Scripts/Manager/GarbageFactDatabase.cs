@@ -2,12 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-[System.Serializable]
-public class GarbageFactEntry
-{
-    public string type;
-    public string fact;
-}
+
 
 public class GarbageFactDatabase : MonoBehaviour
 {
