@@ -8,7 +8,8 @@ public static class SceneNameExtensions
         {
             SceneName.RuangAtasan => "Ruang Atasan",
             SceneName.RuangRapat => "Ruang Rapat",
-            SceneName.RuangKerja => "Ruang Kerja",
+            //SceneName.RuangKerja => "Ruang Kerja", ///Original Branch
+            SceneName.RuangKerja => "WW_RuangKerja", 
             SceneName.Laut => "Laut",
             _ => scene.ToString()
         };

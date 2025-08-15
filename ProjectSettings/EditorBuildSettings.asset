@@ -26,6 +26,36 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Temp/SplashScreen.unity
     guid: 6eb6de1b77c4840b381b4e250b4fde78
+  - enabled: 1
+    path: Assets/Scenes/Experiment/Collect item.unity
+    guid: 6e9959a42d1b3423791903a4bcfb92b5
+  - enabled: 1
+    path: Assets/Scenes/Experiment/Detect Item.unity
+    guid: b8427c031722d468894bbeef3c15b1d7
+  - enabled: 1
+    path: Assets/Scenes/Experiment/FishNPC.unity
+    guid: 5802e2f0844104363ba45e87364fea7e
+  - enabled: 1
+    path: Assets/Scenes/Experiment/Gameplay.unity
+    guid: 071d90e06a50b4ebfb0db66389190b03
+  - enabled: 1
+    path: Assets/Scenes/Experiment/GarbageSystem.unity
+    guid: 29e25209baa14fa47b28d07dcf0430fe
+  - enabled: 1
+    path: Assets/Scenes/Experiment/InteractNPC.unity
+    guid: cc238fd58528542f4940e9a4c933021f
+  - enabled: 1
+    path: Assets/Scenes/Experiment/Mission.unity
+    guid: 71ab527931c09475c9ebb79b3a9d4940
+  - enabled: 1
+    path: Assets/Scenes/Experiment/Tools.unity
+    guid: 992b452f95a6643908d0d9f0449064a3
+  - enabled: 1
+    path: Assets/Scenes/Experiment/Vacuum Tool.unity
+    guid: 7165fef5d2eb844d4b430fa1eef5d640
+  - enabled: 1
+    path: Assets/Scenes/Temp/WW_RuangKerja.unity
+    guid: 0a113253b8e62ea4eb589332b5d8e52d
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0

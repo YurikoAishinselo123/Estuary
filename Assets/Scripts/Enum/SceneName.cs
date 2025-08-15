@@ -6,5 +6,6 @@ public enum SceneName
     Laut,
     Splashscreen,
     Mainmenu,
-    Cutscene
+    Cutscene,
+    WW_RuangKerja
 }

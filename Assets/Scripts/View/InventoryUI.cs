@@ -6,7 +6,7 @@ public class InventoryUI : MonoBehaviour
 {
     [SerializeField] private GameObject slotPrefab;
     [SerializeField] private Transform slotParent;
-    [SerializeField] private int maxSlotCount = 4;
+    private int maxSlotCount = 2;
 
     private List<ItemSlotUI> slotUIs = new();
 
