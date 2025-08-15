@@ -6,6 +6,7 @@ public class DetectionManager : MonoBehaviour
     public static DetectionManager Instance { get; private set; }
 
     public event Action<string> OnDetect;
+    public event Action<string> OnFactDetected;
 
     [Header("Detection Settings")]
     [SerializeField] private float detectionRange = 3f;
@@ -44,28 +45,8 @@ public class DetectionManager : MonoBehaviour
     private void PerformDetection()
     {
         currentDetected = null;
+        bool detectedSomething = false;
 
-        // Step 1: OverlapSphere to detect nearby objects
-        Collider[] hits = Physics.OverlapSphere(playerCamera.position, detectionRange);
-
-        foreach (Collider hit in hits)
-        {
-            IDetectable detectable = hit.GetComponent<IDetectable>();
-            if (detectable != null)
-            {
-                Vector3 dirToTarget = (hit.transform.position - playerCamera.position).normalized;
-                float angle = Vector3.Angle(playerCamera.forward, dirToTarget);
-
-                if (angle < detectionAngle / 2f)
-                {
-                    currentDetected = detectable;
-                    OnDetect?.Invoke(detectable.GetDisplayName());
-                    return;
-                }
-            }
-        }
-
-        // Step 2: Fan of raycasts
         float step = detectionAngle / (rayCount - 1);
         float startAngle = -detectionAngle / 2f;
 
@@ -82,6 +63,23 @@ public class DetectionManager : MonoBehaviour
                 {
                     currentDetected = detectable;
                     OnDetect?.Invoke(detectable.GetDisplayName());
+                    detectedSomething = true;
+
+                    // If it's garbage, show the fact
+                    Garbage garbage = hit.collider.GetComponent<Garbage>();
+                    if (garbage != null)
+                    {
+                        string fact = garbage.GetFact();
+                        Debug.Log("fact : " + fact);
+                        OnFactDetected?.Invoke(fact);
+
+                        if (!GameProgressManager.Instance.HasDetectedGarbageForTheFirstTime)
+                        {
+                            GameProgressManager.Instance.HasDetectedGarbageForTheFirstTime = true;
+                            GuidanceManager.Instance?.ShowNextGuidance();
+                        }
+                    }
+
                     Debug.DrawRay(playerCamera.position, direction * detectionRange, Color.green, 0.1f);
                     return;
                 }
@@ -90,8 +88,11 @@ public class DetectionManager : MonoBehaviour
             Debug.DrawRay(playerCamera.position, direction * detectionRange, Color.red, 0.1f);
         }
 
-        // Nothing detected
-        OnDetect?.Invoke(string.Empty);
+        if (!detectedSomething)
+        {
+            OnDetect?.Invoke(string.Empty);
+            OnFactDetected?.Invoke(string.Empty);
+        }
     }
 
     public IDetectable GetCurrentDetected()

@@ -48,6 +48,7 @@ public class SaveSystem : MonoBehaviour
         ChapterSaveHelper.ResetChapterProgress();
         MissionSaveHelper.ClearAllMissionProgress();
         GameProgressManager.Instance?.ResetProgress();
+        GuidanceManager.Instance.ResetGuidance();
         PhotoSaveHelper.DeleteAllPhotos();
         PlayerPrefs.Save();
         Debug.Log("[SaveSystem] All data reset.");

@@ -1,83 +1,143 @@
-using UnityEngine;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+    using UnityEngine;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
 
-public class MissionManager : MonoBehaviour
-{
-    public static MissionManager Instance { get; private set; }
+    public class MissionManager : MonoBehaviour
+    {
+        public static MissionManager Instance { get; private set; }
 
-    public event Action<ChapterModel> OnChapterLoaded;
-    public event Action<MissionModel> OnMissionUpdated;
-    public event Action<int> OnMissionProgressUpdated;
+        public event Action<ChapterModel> OnChapterLoaded;
+        public event Action<MissionModel> OnMissionUpdated;
+        public event Action<int> OnMissionProgressUpdated;
+        public event Action OnReflectionMissionComplete;
+        public event Action CompleteChapter;
+
+
 
     public ChapterModel CurrentChapter { get; private set; }
-    public MissionModel CurrentMission => currentMission;
+        public MissionModel CurrentMission => currentMission;
 
-    private MissionModel currentMission;
-    private HashSet<string> collectedItemIDs = new();
+        private MissionModel currentMission;
+        private HashSet<string> collectedItemIDs = new();
 
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
+
+        private int garbageCollected = 0;
+
+
+        private void Awake()
         {
-            Destroy(gameObject);
-            return;
+            if (Instance != null && Instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
         }
 
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Start()
-    {
-        int currentChapterIndex = ChapterSaveHelper.GetCurrentChapter();
-        Debug.Log("current chapter : " + currentChapterIndex);
-        LoadChapter($"Chapter{currentChapterIndex}");
-    }
-
-    private void LoadChapter(string fileName)
-    {
-        CurrentChapter = MissionLoader.LoadChapter(fileName);
-        Debug.Log("chapter : " + fileName);
-
-        if (CurrentChapter != null)
+        private void Start()
         {
-            Debug.Log($"[MissionManager] Loaded: {CurrentChapter.chapterTitle}");
-            OnChapterLoaded?.Invoke(CurrentChapter);
+            int currentChapterIndex = ChapterSaveHelper.GetCurrentChapter();
+            Debug.Log("current chapter : " + currentChapterIndex);
+            LoadChapter($"Chapter{currentChapterIndex}");
 
-            LoadCurrentMission();
+            GameStateManager.Instance.OnStateChanged += HandleGameStateChanged;
         }
-        else
+
+        private void HandleGameStateChanged(GameState newState)
         {
-            Debug.LogError($"[MissionManager] Failed to load chapter: {fileName}");
+            if (newState == GameState.Gameplay &&
+                currentMission != null &&
+                currentMission.id == 4 &&
+                GameProgressManager.Instance.HasCapturedCleanEnvironmentForTheFirstTime)
+            {
+                Debug.Log("[MissionManager] Completing mission 4 after photo review");
+                CompleteCurrentMission();
+            }
         }
-    }
 
-    private void LoadCurrentMission()
-    {
-        int nextMissionId = MissionSaveHelper.GetNextIncompleteMissionID(CurrentChapter);
-        currentMission = CurrentChapter.missions.Find(m => m.id == nextMissionId);
 
-        if (currentMission != null)
+
+        private void LoadChapter(string fileName)
         {
-            Debug.Log($"[MissionManager] Current Mission: {currentMission.title}");
-            OnMissionUpdated?.Invoke(currentMission);
-        }
-        else
-        {
-            Debug.Log("[MissionManager] All missions in chapter completed.");
-            OnMissionUpdated?.Invoke(null); // Hide UI if needed
-        }
-    }
+            CurrentChapter = MissionLoader.LoadChapter(fileName);
+            Debug.Log("chapter : " + fileName);
 
-    public void CompleteCurrentMission()
-    {
+            if (CurrentChapter != null)
+            {
+                Debug.Log($"[MissionManager] Loaded: {CurrentChapter.chapterTitle}");
+                OnChapterLoaded?.Invoke(CurrentChapter);
+
+                LoadCurrentMission();
+            }
+            else
+            {
+                Debug.LogError($"[MissionManager] Failed to load chapter: {fileName}");
+            }
+        }
+
+        private void LoadCurrentMission()
+        {
+            int nextMissionId = MissionSaveHelper.GetNextIncompleteMissionID(CurrentChapter);
+            currentMission = CurrentChapter.missions.Find(m => m.id == nextMissionId);
+
+            if (currentMission != null)
+            {
+                Debug.Log($"[MissionManager] Current Mission: {currentMission.title}");
+                collectedItemIDs.Clear();      // Reset for mission 1
+                garbageCollected = 0;          // Reset for mission 3
+                OnMissionUpdated?.Invoke(currentMission);
+            }
+            else
+            {
+                Debug.Log("[MissionManager] All missions in chapter completed.");
+                OnMissionUpdated?.Invoke(null); // Hide UI if needed
+            }
+        }
+
+        public void ReportGarbageCollected()
+        {
+            if (currentMission == null || currentMission.id != 3) return;
+
+            garbageCollected++;
+            Debug.Log($"[MissionManager] Garbage collected: {garbageCollected}/{currentMission.qty}");
+            OnMissionProgressUpdated?.Invoke(garbageCollected);
+
+            if (garbageCollected >= currentMission.qty)
+            {
+                GuidanceManager.Instance.ShowNextGuidance();
+                CompleteCurrentMission();
+            }
+        }
+        
+
+
+        public void CompleteCurrentMission()
+        {
         if (currentMission == null)
         {
             Debug.LogWarning("[MissionManager] No active mission to complete.");
             return;
         }
+
+        Debug.Log("current state : " + GameStateManager.Instance.CurrentState);
+
+        if (currentMission.id == 4 && GameStateManager.Instance.CurrentState == GameState.Gameplay && GameProgressManager.Instance.CompletedAllGameObjective)
+        {
+            Debug.Log("tell chapter completed UI");
+            CompletedChapterUI.Instance.Show();
+            // CompleteChapter?.Invoke();
+        }
+
+        else if (currentMission.id == 4 && GameStateManager.Instance.CurrentState == GameState.Gameplay)
+        {
+            Debug.Log("tell refelction UI");
+            OnReflectionMissionComplete?.Invoke();
+        }
+
+        
 
         Debug.Log($"[MissionManager] Mission completed: {currentMission.title}");
 
@@ -97,57 +157,58 @@ public class MissionManager : MonoBehaviour
         }
     }
 
-    public void CompleteCurrentChapterAndAdvance()
-    {
-        int currentChapter = ChapterSaveHelper.GetCurrentChapter();
-        int nextChapter = currentChapter + 1;
-
-        ChapterSaveHelper.SetCurrentChapter(nextChapter);
-        // LoadChapter($"Chapter{nextChapter}");
-    }
-
-    public int GetCurrentChapterNumber()
-    {
-        return CurrentChapter != null ? CurrentChapter.chapterId : 1;
-    }
-
-    public void NotifyItemCollected(ItemSO itemSO)
-    {
-        if (itemSO == null || currentMission == null) return;
-
-        // Mission 1: Collect camera and vacuum
-        if (currentMission.id == 1)
+        public void CompleteCurrentChapterAndAdvance()
         {
-            if (itemSO.itemID == "camera" || itemSO.itemID == "vacuum")
+            int currentChapter = ChapterSaveHelper.GetCurrentChapter();
+            int nextChapter = currentChapter + 1;
+
+            ChapterSaveHelper.SetCurrentChapter(nextChapter);
+            // LoadChapter($"Chapter{nextChapter}");
+        }
+
+        public int GetCurrentChapterNumber()
+        {
+            return CurrentChapter != null ? CurrentChapter.chapterId : 1;
+        }
+
+        public void NotifyItemCollected(ItemSO itemSO)
+        {
+            if (itemSO == null || currentMission == null) return;
+
+            // Mission 1: Collect camera and vacuum
+            if (currentMission.id == 1)
             {
-                if (collectedItemIDs.Add(itemSO.itemID)) // Only new items
+                if (itemSO.itemID == "camera" || itemSO.itemID == "vacuum")
                 {
-                    Debug.Log($"[MissionManager] Collected tool: {itemSO.itemID}");
-                    OnMissionProgressUpdated?.Invoke(collectedItemIDs.Count);
-                    // OnMissionUpdated?.Invoke(currentMission); // Optional: refresh UI
+                    if (collectedItemIDs.Add(itemSO.itemID)) // Only new items
+                    {
+                        Debug.Log($"[MissionManager] Collected tool: {itemSO.itemID}");
+                        OnMissionProgressUpdated?.Invoke(collectedItemIDs.Count);
+                        // OnMissionUpdated?.Invoke(currentMission); // Optional: refresh UI
 
+                    }
+
+                    CheckMission1Completion();
                 }
-
-                CheckMission1Completion();
             }
         }
-    }
 
-    private void CheckMission1Completion()
-    {
-        string[] requiredToolIDs = { "camera", "vacuum" };
-        bool allCollected = requiredToolIDs.All(id => collectedItemIDs.Contains(id));
-
-        if (allCollected)
+        private void CheckMission1Completion()
         {
-            CompleteCurrentMission();
+            string[] requiredToolIDs = { "camera", "vacuum" };
+            bool allCollected = requiredToolIDs.All(id => collectedItemIDs.Contains(id));
+
+            if (allCollected)
+            {
+                GuidanceManager.Instance.ShowNextGuidance();
+                CompleteCurrentMission();
+            }
+        }
+
+        // Optional: call this from gameplay systems (e.g. camera/photo/vacuum)
+        public void ReportMissionProgress(int currentAmount)
+        {
+            if (currentMission == null) return;
+            OnMissionUpdated?.Invoke(currentMission);
         }
     }
-
-    // Optional: call this from gameplay systems (e.g. camera/photo/vacuum)
-    public void ReportMissionProgress(int currentAmount)
-    {
-        if (currentMission == null) return;
-        OnMissionUpdated?.Invoke(currentMission);
-    }
-}

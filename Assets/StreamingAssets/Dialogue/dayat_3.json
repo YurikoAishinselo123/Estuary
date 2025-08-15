@@ -1,10 +1,24 @@
 {
-  "conversationId": "dayat_ocean_visited",
-  "npcName": "Dayat",
-  "dialogues": [
+  "dialogue": [
     {
       "speaker": "Dayat",
-      "text": "Kamu sudah lihat sendiri kondisinya kan? Sampah sangat parah!"
+      "line": "Asep, kamu sudah ke laut?"
+    },
+    {
+      "speaker": "Asep",
+      "line": "Sudah, Pak. Tapi saya belum menemukan lokasi sampahnya."
+    },
+    {
+      "speaker": "Dayat",
+      "line": "Kita harus temukan lokasi itu secepatnya. Kalau tidak, bisa membahayakan ekosistem laut."
+    },
+    {
+      "speaker": "Asep",
+      "line": "Baik, Pak. Saya akan cari lebih teliti lagi."
+    },
+    {
+      "speaker": "Dayat",
+      "line": "Ingat, setiap detik penting. Semakin lama sampah itu berada di laut, dampaknya bisa semakin parah."
     }
   ]
 }

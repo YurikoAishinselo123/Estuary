@@ -75,7 +75,7 @@ public class VacuumController : MonoBehaviour
     private void OnGarbageCollected(GameObject garbage)
     {
         // AudioManager.Instance?.SFXCollectGarbage();
-        // MissionManager.Instance?.OnGarbageCollected();
+        MissionManager.Instance.ReportGarbageCollected();
         Destroy(garbage);
     }
 

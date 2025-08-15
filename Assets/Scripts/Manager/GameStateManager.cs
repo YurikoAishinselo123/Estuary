@@ -53,7 +53,7 @@ public class GameStateManager : MonoBehaviour
     private void HandleDialogueStarted(NPCDialogueModel model, NPCController speaker)
     {
         SetState(GameState.Dialogue);
-        Debug.Log("Current State");
+        // Debug.Log("Current State");
     }
 
     private void HandleDialogueEnded()
