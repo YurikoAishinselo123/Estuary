@@ -14829,6 +14829,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04bce55ae305445d1aa616e13fe026e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasTalkedToDayatForTheFirstTime: 0
 --- !u!65 &3225197906590235072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15082,6 +15083,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   photoDisplayPanel: {fileID: 4734805076044484113}
   photoImage: {fileID: 2120874077839369833}
+  photoPanel: {fileID: 0}
+  dirtyPhotoImage: {fileID: 0}
+  cleanPhotoImage: {fileID: 0}
 --- !u!1 &3610884443753174645
 GameObject:
   m_ObjectHideFlags: 0
